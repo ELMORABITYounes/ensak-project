@@ -30,26 +30,35 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ml-auto">
                     <li class="nav-item">
-                        <a id="login" class="nav-link btn btn-primary btn-lg text-uppercase js-scroll-trigger" class="conn" href="{{ path('login') }}">Se connecter <i class="fa fa-lock"></i></a>
+                        <a id="login" class="nav-link btn btn-primary btn-lg text-uppercase js-scroll-trigger conn" href="{{ path('login') }}">Se connecter <i class="fa fa-lock"></i></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             S'inscrire
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ path('register') }}">Professeur</a>
-                            <a class="dropdown-item" href="#">Etudiant</a>
+                            <a class="dropdown-item" href="{{ path('app_registration', {'type': 'teacher'}) }}">Professeur</a>
+                            <a class="dropdown-item" href="{{ path('app_registration', {'type': 'student'}) }}">Etudiant</a>
                         </div>
                     </li>
-
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container content">
+        <div class="row">
+            {% for message in app.flashes('success')   %}
+                <div class="col-md-6 offset-md-3 alert alert-success text-center">{{ message }}</div>
+            {% endfor %}
 
+            {% for message in app.flashes('error')   %}
+                <div class="col-md-6 offset-md-3 alert alert-danger text-center">{{ message }}</div>
+            {% endfor %}
+
+        </div>
 
         {% block body %}
+
         {% endblock %}
     </div>
     <div id="push"></div>

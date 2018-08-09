@@ -23,4 +23,47 @@ class Teacher extends User
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+
+    private $somme;
+    private $departement;
+    /**
+     * @return mixed
+     */
+    public function getDepartement()
+    {
+        return $this->departement;
+    }
+    /**
+     * @param mixed $departement
+     */
+    public function setDepartement($departement)
+    {
+        $this->departement = $departement;
+    }
+
+
+
+    public function __construct()
+    {
+        $this->roles = array(static::ROLE_DEFAULT);
+        $this->enabled = true;
+        $this->addRole("ROLE_TEACHER");
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSomme()
+    {
+        return $this->somme;
+    }
+
+    /**
+     * @param mixed $somme
+     */
+    public function setSomme($somme)
+    {
+        $this->somme = $somme;
+    }
 }

@@ -23,4 +23,46 @@ class Student extends User
      */
     protected $id;
 
+    public function __construct()
+    {
+        $this->roles = array(static::ROLE_DEFAULT);
+        $this->enabled = true;
+        $this->addRole("ROLE_STUDENT");
+    }
+    private $cne;
+    private $filiere;
+
+
+    /**
+     * @return mixed
+     */
+    public function getFiliere()
+    {
+        return $this->filiere;
+    }
+
+    /**
+     * @param mixed $filiere
+     */
+    public function setFiliere($filiere)
+    {
+        $this->filiere = $filiere;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCne()
+    {
+        return $this->cne;
+    }
+
+    /**
+     * @param mixed $cne
+     */
+    public function setCne($cne)
+    {
+        $this->cne = $cne;
+    }
+
 }

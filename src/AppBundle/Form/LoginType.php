@@ -23,7 +23,12 @@ class LoginType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-
+        $resolver->setDefaults(array(
+            'csrf_protection' => true,
+            'csrf_field_name' => '_csrf_token',
+            // a unique key to help generate the secret token
+            'csrf_token_id'   => 'test',
+        ));
     }
 
     public function getBlockPrefix()

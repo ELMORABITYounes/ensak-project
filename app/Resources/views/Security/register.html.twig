@@ -1,77 +1,53 @@
 {% extends 'base.html.twig' %}
 
 {% block body%}
-    <div class="container content">
         <div class="row">
             <div class="card card-register mx-auto mt-5 col-md-8">
                 <div class="card-header">Register an Account</div>
                 <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-3">
-                                    <div>
-                                        <label>Vous etes :</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-check-inline">
-                                        <label class="form-check-label" for="radio1">
-                                            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>Etudiant
-                                        </label>
-                                    </div>
-                                    <div class="form-check-inline">
-                                        <label class="form-check-label" for="radio2">
-                                            <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">Professeur
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    {{ form_start(form) }}
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <label for="firstName">Prénom :</label>
-                                        <input type="text" id="firstName" class="form-control" placeholder="Entrez votre prénom" required="required" autofocus="autofocus">
+                                        {{ form_row(form.firstName) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <label for="lastName">Nom :</label>
-                                        <input type="text" id="lastName" class="form-control" placeholder="Entrez votre nom" required="required">
+                                        {{ form_row(form.secondName) }}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-label-group">
-                                <label for="inputEmail">Email :</label>
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Entrez votre émail" required="required">
+                                {{ form_row(form.email) }}
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-label-group">
-                                <label for="departement">Département :</label>
-                                <select id="departement" class="custom-select">
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+                                {% if form.departement is defined and form.departement is not null %}
+                                {{ form_row(form.departement) }}
+                                {% elseif form.filiere is defined and form.filiere is not null%}
+                                {{ form_row(form.filiere) }}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <label for="inputTel">Télephone(Optionnel) :</label>
-                                        <input type="text" id="inputTel" class="form-control" placeholder="+(212) 645 45 45 45" required="required" autofocus="autofocus">
+                                        {{ form_row(form.tel) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <label for="inpudIdentity">CNE/Numero de somme :</label>
-                                        <input type="text" id="inpudIdentity" class="form-control" placeholder="CNE/Numero de somme" required="required">
+                                        {% if form.somme is defined and form.somme is not null %}
+                                            {{ form_row(form.somme) }}
+                                        {% elseif form.cne is defined and form.cne is not null%}
+                                            {{ form_row(form.cne) }}
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -80,26 +56,22 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <label for="inputPassword">Mot de passe :</label>
-                                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                                        {{ form_row(form.plainPassword.first) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <label for="inputPassword">Confirmer mot de passe :</label>
-                                        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirmer le mot de passe" required="required">
+                                        {{ form_row(form.plainPassword.second) }}
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <button class="btn btn-primary btn-block">Register</button>
-                    </form>
+                    {{ form_end(form) }}
                     <div class="text-center">
                         <a class="d-block medium" href="#">Forgot Password?</a>
                     </div>
                 </div>
             </div>
-        </div>
-
 {% endblock %}
