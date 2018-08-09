@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Gestion de filière{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Kaushan+Script'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'>
+
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% block stylesheets %}
+
+    {% endblock %}
+
+</head>
+<body id="page-top">
+<div id="wrap">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">Géstion de Filière</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item">
+                        <a id="login" class="nav-link btn btn-primary btn-lg text-uppercase js-scroll-trigger" class="conn" href="{{ path('login') }}">Se connecter <i class="fa fa-lock"></i></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            S'inscrire
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ path('register') }}">Professeur</a>
+                            <a class="dropdown-item" href="#">Etudiant</a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container content">
+
+
+        {% block body %}
+        {% endblock %}
+    </div>
+    <div id="push"></div>
+</div>
+<!-- Footer -->
+<footer id="footer">
+    <div class="row">
+        <div class="col-md-4">
+            <span class="copyright">Copyright &copy; Your Website 2018</span>
+        </div>
+        <div class="col-md-4">
+            <ul class="list-inline social-buttons">
+                <li class="list-inline-item">
+                    <a href="#">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <ul class="list-inline quicklinks">
+                <li class="list-inline-item">
+                    <a href="#">Privacy Policy</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">Terms of Use</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
+    <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+    <script  src="{{ asset('js/index.js') }}"></script>
+{% block javascripts %}
+
+{% endblock %}
+
+</body>
+
+</html>

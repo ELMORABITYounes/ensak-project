@@ -1,0 +1,43 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+    encoders:
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        chain_provider:
+            chain:
+                providers: [teacher_provider, student_provider]
+        teacher_provider:
+            entity:
+                class: AppBundle:Teacher
+        student_provider:
+            entity:
+                class: AppBundle:Student
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            provider: chain_provider
+            remember_me:
+                secret:   '%secret%'
+            form_login:
+                login_path: /login
+                check_path: /login
+                default_target_path: /
+                always_use_default_target_path: true
+                failure_path: /login
+                csrf_token_generator: security.csrf.token_manager
+            # activate different ways to authenticate
+
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            #http_basic: ~
+
+            # https://symfony.com/doc/current/security/form_login_setup.html
+            #form_login: ~
