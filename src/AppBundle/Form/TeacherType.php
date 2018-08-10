@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Teacher;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -11,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class TeacherType extends AbstractType
 {
@@ -19,8 +21,19 @@ class TeacherType extends AbstractType
         $builder
             ->add('firstName',TextType::class,array('label' => 'Prénom'))
             ->add('secondName',TextType::class,array('label' => 'Nom'))
-            ->add('departement',TextType::class,array('label' => 'département'))
-            ->add("tel",TextType::class,array('label' => 'Numero de télephone',"required"=>false))
+            ->add('departement', EntityType::class, array(
+                // looks for choices from this entity
+                'class' => 'AppBundle\Entity\Departement',
+
+                // uses the User.username property as the visible option string
+                'choice_label' => 'name',
+                'label' => 'département'
+
+                // used to render a select box, check boxes or radios
+                // 'multiple' => true,
+                // 'expanded' => true,
+            ))
+            ->add("tel",TextType::class,array('label' => 'Numero de télephone(Optionnel)',"required"=>false))
             ->add("somme",NumberType::class,array('label' => 'Numero de somme'))
             ->add('email', EmailType::class,array('label' => 'Addresse émail'))
             ->add('plainPassword', RepeatedType::class, array(
@@ -28,7 +41,11 @@ class TeacherType extends AbstractType
                 'first_options'  => array('label' => 'Password','translation_domain' => 'validators'),
                 'second_options' => array('label' => 'Repeat Password','translation_domain' => 'validators'),
             ))
-        ;
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'allow_delete' => true,
+                'label' => "image de profile(Optionnel)"
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

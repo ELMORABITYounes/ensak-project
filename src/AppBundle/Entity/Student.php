@@ -29,25 +29,20 @@ class Student extends User
         $this->enabled = true;
         $this->addRole("ROLE_STUDENT");
     }
+
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @var integer
+     */
     private $cne;
-    private $filiere;
-
 
     /**
-     * @return mixed
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Niveau")
+     * @ORM\JoinColumn(nullable=false)
      */
-    public function getFiliere()
-    {
-        return $this->filiere;
-    }
+    private $niveau;
 
-    /**
-     * @param mixed $filiere
-     */
-    public function setFiliere($filiere)
-    {
-        $this->filiere = $filiere;
-    }
 
     /**
      * @return mixed
@@ -63,6 +58,22 @@ class Student extends User
     public function setCne($cne)
     {
         $this->cne = $cne;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNiveau()
+    {
+        return $this->niveau;
+    }
+
+    /**
+     * @param mixed $niveau
+     */
+    public function setNiveau($niveau)
+    {
+        $this->niveau = $niveau;
     }
 
 }

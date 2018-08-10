@@ -9,6 +9,7 @@ use AppBundle\Form\StudentType;
 use AppBundle\Form\TeacherType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -129,4 +130,22 @@ class SecurityController extends Controller
         }
     }
 
+
+    /**
+     * @Route("/test")
+     */
+    public function testAction()
+    {
+        $entityManager = $this->getDoctrine()->getManager()->getRepository("AppBundle:Teacher");;
+        $teacher=$entityManager->find(2);
+        $helper=$this->get("vich_uploader.templating.helper.uploader_helper");
+        $path = $helper->asset($teacher, 'imageFile');
+
+        return $this->render(
+            'Security/test.html.twig',
+            array('teacher' => $teacher
+            ,'chemin'=>$path)
+        );
+
+    }
 }

@@ -26,12 +26,23 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+
                             <div class="form-label-group">
                                 {% if form.departement is defined and form.departement is not null %}
                                 {{ form_row(form.departement) }}
-                                {% elseif form.filiere is defined and form.filiere is not null%}
-                                {{ form_row(form.filiere) }}
+                                {% elseif form.niveau is defined and form.niveau is not null%}
+                                {{ form_row(form.niveau) }}
                                 {% endif %}
+                            </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-label-group">
+                                            {{ form_row(form.imageFile) }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">

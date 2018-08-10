@@ -8,6 +8,9 @@
 
 namespace AppBundle\DataFixtures;
 
+use AppBundle\Entity\Departement;
+use AppBundle\Entity\Filiere;
+use AppBundle\Entity\Niveau;
 use AppBundle\Entity\Student;
 use AppBundle\Entity\Teacher;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -30,7 +33,7 @@ class AppFixtures extends Fixture
      */
     public function load(ObjectManager $manager)
     {
-        $teacher = new Teacher();
+        /*$teacher = new Teacher();
         $teacher->setEmail('teacher@gmail.com');
 
         $password = $this->encoder->encodePassword($teacher, 'password123');
@@ -43,7 +46,29 @@ class AppFixtures extends Fixture
         $student->setPassword($password1);
         $manager->persist($student);
         $manager->persist($teacher);
-        $manager->flush();
+        $manager->flush();*/
+
+        for ($i=0;$i<5;$i++){
+            $dep=new Departement();
+            $dep->setName("departement".$i);
+            $dep->setDescription("description".$i);
+            $manager->persist($dep);
+            $manager->flush();
+        }
+        for ($i=0;$i<3;$i++){
+            $fil=new Filiere();
+            $fil->setName("filier".($i+1));
+            $manager->persist($fil);
+            $manager->flush();
+            for ($j=0;$j<3;$j++){
+                $niv=new Niveau();
+                $niv->setLibelle("niveau".$j);
+                $niv->setFiliere($fil);
+                $manager->persist($niv);
+                $manager->flush();
+            }
+        }
+
     }
 }
 

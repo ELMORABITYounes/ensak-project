@@ -24,9 +24,21 @@ class Teacher extends User
      */
     protected $id;
 
-
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @var integer
+     */
     private $somme;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Departement")
+     * @ORM\JoinColumn(nullable=false)
+     */
     private $departement;
+
+
     /**
      * @return mixed
      */
@@ -35,9 +47,9 @@ class Teacher extends User
         return $this->departement;
     }
     /**
-     * @param mixed $departement
+     * @param Departement $departement
      */
-    public function setDepartement($departement)
+    public function setDepartement(Departement $departement)
     {
         $this->departement = $departement;
     }
