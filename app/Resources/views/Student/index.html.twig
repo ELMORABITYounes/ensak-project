@@ -1,0 +1,78 @@
+{% extends 'layout.html.twig' %}
+
+{% block body%}
+    <div class="row profile">
+        <div class="col-md-3">
+            <div class="profile-sidebar position-fixed">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                    {% if user.imageName is not null %}
+                        <img src="{{ vich_uploader_asset(user, 'imageFile') }}" class="img-responsive" alt="">
+                    {% else %}
+                        <img src="{{ asset('img/avatar.png') }}" class="img-responsive" alt="">
+                    {% endif %}
+                </div>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        {{ user.firstName ~ ' ' ~ user.secondName }}
+                    </div>
+                    <div class="profile-usertitle-job">
+                        {{ user.niveau.filiere.name ~ ', ' ~ user.niveau.libelle }}
+                    </div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR BUTTONS -->
+                <div class="profile-userbuttons">
+                </div>
+                <!-- END SIDEBAR BUTTONS -->
+                <!-- SIDEBAR MENU -->
+                <div class="profile-usermenu sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="active nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="fa fa-home"></i>
+                                Tableau de bord </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://codepen.io/jasondavis/pen/jVRwaG?editors=1000">
+                                <i class="fa fa-user"></i>
+                                Mon profile </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" target="_blank">
+                                <i class="fa fa-check"></i>
+                                Mes stages </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-envelope"></i>
+                                Messagerie </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="profile-content">
+                Some user related content goes here...
+                <h1>test</h1>
+                <h1>test</h1>
+                <h1>test</h1>
+                <h1>test</h1>
+                <h1>test</h1>
+                <h1>test</h1>
+                <h1>test</h1>
+                <h1>test</h1>
+                <h1>test</h1>
+                <h1>test</h1>
+                <h1>test</h1>
+                <h1>test</h1>
+                <h1>test</h1>
+                <h1>test</h1>
+            </div>
+        </div>
+    </div>
+{% endblock %}

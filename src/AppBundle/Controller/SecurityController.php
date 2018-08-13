@@ -5,11 +5,10 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Student;
 use AppBundle\Entity\Teacher;
 use AppBundle\Form\LoginType;
-use AppBundle\Form\StudentType;
-use AppBundle\Form\TeacherType;
+use AppBundle\Form\StudentRegisterType;
+use AppBundle\Form\TeacherRegisterType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -46,8 +45,15 @@ class SecurityController extends Controller
      */
     public function indexAction()
     {
-        
-        return $this->render('base.html.twig');
+        $user=$this->getUser();
+
+        if ($user instanceof Teacher){
+            return $this->redirectToRoute("teacherHome");
+        }elseif ($user instanceof Student){
+            return $this->redirectToRoute("studentHome");
+        }else{
+            return $this->redirectToRoute('login');
+        }
     }
 
     /**
@@ -68,7 +74,7 @@ class SecurityController extends Controller
         if ($type==="teacher"){
         // 1) build the form
         $teacher = new Teacher();
-        $form = $this->createForm(TeacherType::class, $teacher);
+        $form = $this->createForm(TeacherRegisterType::class, $teacher);
 
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
@@ -99,7 +105,7 @@ class SecurityController extends Controller
         }else{
             // 1) build the form
             $student = new Student();
-            $form = $this->createForm(StudentType::class, $student);
+            $form = $this->createForm(StudentRegisterType::class, $student);
 
             // 2) handle the submit (will only happen on POST)
             $form->handleRequest($request);
@@ -136,15 +142,15 @@ class SecurityController extends Controller
      */
     public function testAction()
     {
-        $entityManager = $this->getDoctrine()->getManager()->getRepository("AppBundle:Teacher");;
+        /*$entityManager = $this->getDoctrine()->getManager()->getRepository("AppBundle:Teacher");;
         $teacher=$entityManager->find(2);
         $helper=$this->get("vich_uploader.templating.helper.uploader_helper");
         $path = $helper->asset($teacher, 'imageFile');
-
+*/
         return $this->render(
-            'Security/test.html.twig',
-            array('teacher' => $teacher
-            ,'chemin'=>$path)
+            'layout.html.twig'
+           /* array('teacher' => $teacher
+            ,'chemin'=>$path)*/
         );
 
     }

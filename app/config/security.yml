@@ -27,6 +27,9 @@ security:
             provider: chain_provider
             remember_me:
                 secret:   '%secret%'
+            logout:
+                            path:   /logout
+                            target: /
             form_login:
                 login_path: /login
                 check_path: /login
@@ -41,3 +44,7 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
+    access_control:
+            - { path: ^/teacher, roles: ROLE_TEACHER }
+            - { path: ^/student, roles: ROLE_STUDENT }
+            - { path: ^/admin, roles: ROLE_ADMIN }

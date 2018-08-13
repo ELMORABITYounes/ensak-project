@@ -89,5 +89,15 @@ class Niveau
     {
         $this->filiere = $filiere;
     }
+
+
+    /**
+     *
+     * @return string
+     */
+    public function _toString()
+    {
+        return $this->libelle;
+    }
 }
 
