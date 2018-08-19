@@ -8,9 +8,13 @@
 
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity
+ * @UniqueEntity(fields="cne", message="cne déja existant")
  * @ORM\Table(name="student")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\StudentRepository")
  */
@@ -31,8 +35,8 @@ class Student extends User
     }
 
     /**
-     * @ORM\Column(type="integer")
-     *
+     * @ORM\Column(type="integer",unique=true)
+     * @Assert\Length(min=10,max=10)
      * @var integer
      */
     private $cne;

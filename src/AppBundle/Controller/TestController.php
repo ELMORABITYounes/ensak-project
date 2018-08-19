@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Teacher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,18 +15,10 @@ class TestController extends Controller
      */
     public function indexAction( \Swift_Mailer $mailer)
     {
-        $message = (new \Swift_Message('Hello Email'))
-            ->setFrom('send@example.com')
-            ->setTo('recipient@example.com')
-            ->setBody(
-                $this->renderView(
-                    'email.txt.twig',
-                    array('name' => "younes")
-                )
-            )
-        ;
-        $mailer->send($message);
-
-        return $this->render("base.html.twig");
+        $user =new Teacher();
+        $user->setFirstName("younes");
+        $response=$this->render("Security/registration/email.txt.twig",array("user"=>$user,"confirmationUrl"=>"test"));
+        $response->headers->set('Content-Type', 'text/plain');
+        return $response;
     }
 }

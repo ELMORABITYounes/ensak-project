@@ -25,4 +25,29 @@ class TeacherRepository extends EntityRepository implements UserLoaderInterface
         } catch (NonUniqueResultException $e) {
         }
     }
+
+    public function findByConfirmationToken($token)
+    {
+        try {
+            return $this->createQueryBuilder('u')
+                ->where('u.confirmationToken = :token')
+                ->setParameter('token', $token)
+                ->getQuery()
+                ->getOneOrNullResult();
+        } catch (NonUniqueResultException $e) {
+        }
+    }
+
+    public function isSommeExist($somme)
+    {
+        if($this->createQueryBuilder('u')
+            ->where('u.somme = :somme')
+            ->setParameter('somme', $somme)
+            ->getQuery()
+            ->getResult()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

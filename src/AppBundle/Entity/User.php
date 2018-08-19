@@ -21,6 +21,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({"Teacher" = "Teacher", "Student" = "Student"})
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @Vich\Uploadable
  *
  */
@@ -58,6 +59,8 @@ abstract class User implements AdvancedUserInterface, \Serializable
     protected $email;
 
     /**
+     *
+     * @Assert\Length(max=15,min=10)
      * @ORM\Column(type="string", length=15,nullable=true)
      */
     protected $tel;
@@ -85,28 +88,40 @@ abstract class User implements AdvancedUserInterface, \Serializable
      *
      * @var File
      */
-    private $imageFile;
+    protected $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
      *
      * @var string
      */
-    private $imageName;
+    protected $imageName;
 
     /**
      * @ORM\Column(type="integer",nullable=true)
      *
      * @var integer
      */
-    private $imageSize;
+    protected $imageSize;
 
     /**
      * @ORM\Column(type="datetime",nullable=true)
      *
      * @var \DateTime
      */
-    private $updatedAt;
+    protected $updatedAt;
+
+    /**
+     * Random string sent to the user email address in order to verify it.
+     * @ORM\Column(type="string", length=255,nullable=true)
+     * @var string|null
+     */
+    protected $confirmationToken;
+    /**
+     * @ORM\Column(type="datetime",nullable=true)
+     * @var \DateTime|null
+     */
+    protected $passwordRequestedAt;
 
 
     public function getPlainPassword()
@@ -117,6 +132,7 @@ abstract class User implements AdvancedUserInterface, \Serializable
     public function setPlainPassword($password)
     {
         $this->plainPassword = $password;
+        $this->password=null;
     }
 
 
@@ -137,7 +153,7 @@ abstract class User implements AdvancedUserInterface, \Serializable
 
     public function eraseCredentials()
     {
-
+        $this->plainPassword = null;
     }
 
     public function isAccountNonExpired()
@@ -362,7 +378,10 @@ abstract class User implements AdvancedUserInterface, \Serializable
         if (null !== $image) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
+            try {
+                $this->updatedAt = new \DateTimeImmutable();
+            } catch (\Exception $e) {
+            }
         }
     }
 
@@ -406,14 +425,70 @@ abstract class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get updatedAt
+     * Gets the confirmation token.
      *
-     * @return \DateTime
+     * @return string|null
      */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
+
+    /**
+     * @return null|string
+     */
+    public function getConfirmationToken()
+    {
+        return $this->confirmationToken;
+    }
+
+
+    /**
+     * Sets the confirmation token.
+     *
+     * @param string|null $confirmationToken
+     *
+     * @return static
+     */
+    public function setConfirmationToken($confirmationToken)
+    {
+        $this->confirmationToken = $confirmationToken;
+        return $this;
+    }
+    /**
+     * Sets the timestamp that the user requested a password reset.
+     *
+     * @param null|\DateTime $date
+     *
+     * @return static
+     */
+    public function setPasswordRequestedAt(\DateTime $date = null)
+    {
+        $this->passwordRequestedAt = $date;
+        return $this;
+    }
+    /**
+     * Gets the timestamp that the user requested a password reset.
+     *
+     * @return null|\DateTime
+     */
+    public function getPasswordRequestedAt()
+    {
+        return $this->passwordRequestedAt;
+    }
+    /**
+     * Checks whether the password reset request has expired.
+     *
+     * @param int $ttl Requests older than this many seconds will be considered expired
+     *
+     * @return bool
+     */
+    public function isPasswordRequestNonExpired($ttl)
+    {
+        return $this->getPasswordRequestedAt() instanceof \DateTime &&
+            $this->getPasswordRequestedAt()->getTimestamp() + $ttl > time();
+    }
+
 
 
 }

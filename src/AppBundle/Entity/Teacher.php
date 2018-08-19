@@ -9,9 +9,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
+ * @UniqueEntity(fields="somme", message="somme déja existant")
  * @ORM\Table(name="teacher")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TeacherRepository")
  */
@@ -25,8 +28,8 @@ class Teacher extends User
     protected $id;
 
     /**
-     * @ORM\Column(type="integer")
-     *
+     * @ORM\Column(type="integer",unique=true)
+     * @Assert\Length(min=10,max=10)
      * @var integer
      */
     private $somme;
@@ -78,4 +81,5 @@ class Teacher extends User
     {
         $this->somme = $somme;
     }
+
 }

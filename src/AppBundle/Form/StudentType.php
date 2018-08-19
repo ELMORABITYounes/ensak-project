@@ -49,6 +49,8 @@ class StudentType extends AbstractType
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
                 'allow_delete' => true,
+                'label'=>"chaoisir une image",
+                'download_link' => false,
             ]);
     }
 

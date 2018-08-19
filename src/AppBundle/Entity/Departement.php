@@ -3,10 +3,11 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Departement
- *
+ * @UniqueEntity(fields="name", message="nom déja existant")
  * @ORM\Table(name="departement")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\DepartementRepository")
  */

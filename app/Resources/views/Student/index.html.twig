@@ -1,9 +1,8 @@
 {% extends 'layout.html.twig' %}
 
 {% block body%}
-    <div class="row profile">
-        <div class="col-md-3">
-            <div class="profile-sidebar position-fixed">
+    <div class="profile">
+            <div class="profile-sidebar sidebar">
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">
                     {% if user.imageName is not null %}
@@ -54,24 +53,12 @@
                 </div>
                 <!-- END MENU -->
             </div>
-        </div>
-        <div class="col-md-9">
+        <div class="theContent">
             <div class="profile-content">
-                Some user related content goes here...
-                <h1>test</h1>
-                <h1>test</h1>
-                <h1>test</h1>
-                <h1>test</h1>
-                <h1>test</h1>
-                <h1>test</h1>
-                <h1>test</h1>
-                <h1>test</h1>
-                <h1>test</h1>
-                <h1>test</h1>
-                <h1>test</h1>
-                <h1>test</h1>
-                <h1>test</h1>
-                <h1>test</h1>
+                {% block content %}
+                    Some user related content goes here...
+
+                {% endblock %}
             </div>
         </div>
     </div>

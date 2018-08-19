@@ -1,0 +1,39 @@
+{% for student in students %}
+    <tr>
+    <td>{{ student.cne }}</td>
+    <td>{{ student.secondName }}</td>
+    <td>{{ student.firstName }}</td>
+    <td>{{ student.email }}</td>
+    <td>{{ student.tel }}</td>
+    <td>{{ student.niveau.libelle }}</td>
+    <td>{{ student.niveau.filiere.name }}</td>
+    <td>
+        <div style="display: inline-block;">
+            <button title="Modifier"
+                    class="btn btn-success btn-xs editModal"
+                    data-toggle="modal"
+                    data-id="{{ student.id }}"
+            ><i class="fa fa-edit"></i>
+            </button>
+            {% if student.enabled == 1 %}
+                {# Bouton pour Bloquer un etudiant#}
+                <button title="Bloquer"
+                        class="btn btn-danger btn-xs bloquer_rec"
+                        data-id="{{ student.id }}"
+                        data-enable="{{ student.enabled }}"><i
+                            class="fa fa-ban"></i>
+                </button>
+            {% else %}
+                {# Bouton pour Débloquer un étudiant #}
+                <button title="deBloquer"
+                        class="btn btn-secondary btn-xs dbloquer_rec"
+                        data-id="{{ student.id }}"
+                        data-enable="{{ student.enabled  }}"><i
+                            class="fa fa-ban"></i>
+                </button>
+                {# Bouton Pour Débloquer un Broker #}
+            {% endif %}
+        </div>
+    </td>
+    </tr>
+{% endfor %}

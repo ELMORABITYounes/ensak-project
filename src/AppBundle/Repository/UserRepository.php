@@ -2,17 +2,18 @@
 /**
  * Created by PhpStorm.
  * User: ELMORABIT
- * Date: 08/08/2018
- * Time: 15:37
+ * Date: 14/08/2018
+ * Time: 22:01
  */
 
 namespace AppBundle\Repository;
 
+
+use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
-use Doctrine\ORM\EntityRepository;
 
-class StudentRepository extends EntityRepository implements UserLoaderInterface
+class UserRepository extends EntityRepository implements UserLoaderInterface
 {
     public function loadUserByUsername($username)
     {
@@ -38,11 +39,11 @@ class StudentRepository extends EntityRepository implements UserLoaderInterface
         }
     }
 
-    public function isCneExist($cne)
+    public function isEmailExist($email)
     {
         if($this->createQueryBuilder('u')
-            ->where('u.cne = :cne')
-            ->setParameter('cne', $cne)
+            ->where('u.email = :email')
+            ->setParameter('email', $email)
             ->getQuery()
             ->getResult()){
             return true;
@@ -50,4 +51,5 @@ class StudentRepository extends EntityRepository implements UserLoaderInterface
             return false;
         }
     }
+
 }

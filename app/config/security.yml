@@ -4,17 +4,29 @@ security:
     encoders:
         AppBundle\Entity\User:
             algorithm: bcrypt
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         chain_provider:
             chain:
-                providers: [teacher_provider, student_provider]
+                providers: [in_memory,teacher_provider, student_provider]
         teacher_provider:
             entity:
                 class: AppBundle:Teacher
         student_provider:
             entity:
                 class: AppBundle:Student
+        in_memory:
+            memory:
+                users:
+                    admin@ensak.com:
+                        password: $2y$13$HV0QhMPEStxTpVbM6HzaJOV/xUqYsi7vq2T/g9uoHDcEQUoT2NQj.
+                        roles: 'ROLE_ADMIN'
+    role_hierarchy:
+        ROLE_TEACHER:     ROLE_USER
+        ROLE_STUDENT:       ROLE_USER
+        ROLE_ADMIN:       ROLE_USER
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs

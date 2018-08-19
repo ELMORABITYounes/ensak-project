@@ -10,4 +10,16 @@ namespace AppBundle\Repository;
  */
 class DepartementRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function isNameExist($name)
+    {
+        if($this->createQueryBuilder('d')
+            ->where('d.name = :name')
+            ->setParameter('name', $name)
+            ->getQuery()
+            ->getResult()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

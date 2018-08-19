@@ -26,15 +26,22 @@ body {
     flex-shrink: 0;
 }
 
+.theContent{
+    margin-left: 280px;
+}
+
+.sidebar {
+        position: fixed;
+        width: 250px;
+        margin-left: 20px;
+}
 
 footer {
     text-align: center;
     background-color: white;
+    margin-left: 280px;
 }
-.ft{
-    padding-left:22px;
-    padding-right:31px;
-}
+
 
 footer span.copyright {
     font-size: 90%;
@@ -75,7 +82,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
     background-color: #fed136;
 }
 .content{
-    margin-top:60px;
+    margin-top:40px;
 }
 
 
@@ -166,6 +173,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
     color: #5b9bd1;
 }
 
+
 .profile-usermenu ul li.active {
     border-bottom: none;
 }
@@ -181,7 +189,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 .profile-content {
     padding: 20px;
     background: #fff;
-    min-height: 460px;
+    min-height: 500px;
 }
 
 .nav>li {

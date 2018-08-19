@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body%}
+    <div class="row">
+        <div class="card card-login mx-auto mt-5 col-md-6">
+            <div class="card-header">Renitialiser le mot de passe</div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                <div class="form-group">
+                    <div class="form-label-group">
+                        {{ form_row(form.plainPassword.first) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        {{ form_row(form.plainPassword.second) }}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
