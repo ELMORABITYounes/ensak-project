@@ -3,19 +3,32 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Departement;
+use AppBundle\Entity\Enseignement;
+use AppBundle\Entity\Filiere;
+use AppBundle\Entity\Module;
+use AppBundle\Entity\Niveau;
+use AppBundle\Entity\Semestre;
 use AppBundle\Entity\Student;
 use AppBundle\Entity\Teacher;
+use AppBundle\Form\AffectedModulesType;
 use AppBundle\Form\DepartementType;
 use AppBundle\Form\EditDepartementType;
 use AppBundle\Form\DepartementFieldType;
+use AppBundle\Form\EditModuleType;
 use AppBundle\Form\EditStudentType;
 use AppBundle\Form\EditTeacherType;
-use AppBundle\Form\NiveauType;
+use AppBundle\Form\EnseignementsFieldType;
+use AppBundle\Form\FiliereFieldType;
+use AppBundle\Form\FiliereType;
+use AppBundle\Form\ModuleFieldType;
+use AppBundle\Form\ModuleType;
+use AppBundle\Form\NiveauFieldType;
+use AppBundle\Form\SemestreFieldType;
 use AppBundle\Form\StudentType;
 use AppBundle\Form\TeacherType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -37,7 +50,7 @@ class AdminController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function studentsListAction(){
-        $form=$this->createForm(NiveauType::class);
+        $form=$this->createForm(NiveauFieldType::class);
         $students =$this->getDoctrine()->getRepository("AppBundle:Student")->findAll();
         return $this->render("Admin/Students/list.html.twig",array("students"=>$students,"form"=>$form->createView()));
     }
@@ -49,14 +62,13 @@ class AdminController extends Controller
      */
     public function loadAction(Request $request){
         $niveauId=$request->get("niveau");
-        $form=$this->createForm(NiveauType::class);
         if ($niveauId!=null){
             $niveau =$this->getDoctrine()->getRepository("AppBundle:Niveau")->find($niveauId);
             $students =$this->getDoctrine()->getRepository("AppBundle:Student")->findBy(["niveau" => $niveau]);
-            return $this->render("Admin/Students/liststudents.html.twig",array("students"=>$students,"form"=>$form->createView()));
+            return $this->render("Admin/Students/liststudents.html.twig",array("students"=>$students));
         }
         $students =$this->getDoctrine()->getRepository("AppBundle:Student")->findAll();
-        return $this->render("Admin/Students/liststudents.html.twig",array("students"=>$students,"form"=>$form->createView()));
+        return $this->render("Admin/Students/liststudents.html.twig",array("students"=>$students));
     }
 
     /**
@@ -180,9 +192,10 @@ class AdminController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function teachersListAction(){
+        $semestreForm=$this->createForm(SemestreFieldType::class);
         $form=$this->createForm(DepartementFieldType::class);
         $teachers =$this->getDoctrine()->getRepository("AppBundle:Teacher")->findAll();
-        return $this->render("Admin/Teachers/list.html.twig",array("teachers"=>$teachers,"form"=>$form->createView()));
+        return $this->render("Admin/Teachers/list.html.twig",array("teachers"=>$teachers,"form"=>$form->createView(),"semestreForm"=>$semestreForm->createView()));
     }
 
     /**
@@ -203,14 +216,13 @@ class AdminController extends Controller
      */
     public function loadTeachersAction(Request $request){
         $depId=$request->get("dep");
-        $form=$this->createForm(DepartementFieldType::class);
         if ($depId!=null){
             $dep =$this->getDoctrine()->getRepository("AppBundle:Departement")->find($depId);
             $teachers =$this->getDoctrine()->getRepository("AppBundle:Teacher")->findBy(["departement" => $dep]);
-            return $this->render("Admin/Teachers/listteachers.html.twig",array("teachers"=>$teachers,"form"=>$form->createView()));
+            return $this->render("Admin/Teachers/listteachers.html.twig",array("teachers"=>$teachers));
         }
         $teachers =$this->getDoctrine()->getRepository("AppBundle:Teacher")->findAll();
-        return $this->render("Admin/Teachers/listteachers.html.twig",array("teachers"=>$teachers,"form"=>$form->createView()));
+        return $this->render("Admin/Teachers/listteachers.html.twig",array("teachers"=>$teachers));
     }
 
     /**
@@ -338,4 +350,341 @@ class AdminController extends Controller
         }
         return $this->render("Admin/Departments/addDepartement.html.twig",array("form"=>$form->createView()));
     }
+
+
+    /**
+     * @Route("/admin/modulesList",name="modulesList")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function modulesListAction(){
+        $form=$this->createForm(DepartementFieldType::class);
+        $modules =$this->getDoctrine()->getRepository("AppBundle:Module")->findAll();
+        return $this->render("Admin/Modules/list.html.twig",array("modules"=>$modules,"form"=>$form->createView()));
+    }
+
+
+
+    /**
+     * @Route("/admin/addModule",name="addModule")
+     */
+    public function addModuleAction(Request $request)
+    {
+        $module=new Module();
+        $form=$this->createForm(ModuleType::class,$module);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($module);
+            $entityManager->flush();
+            $this->addFlash("success","Le module a été ajouté avec succés");
+            return $this->redirectToRoute("modulesList");
+        }
+        return $this->render("Admin/Modules/addModule.html.twig",array("form"=>$form->createView()));
+    }
+
+    /**
+     * @Route("/admin/downLoadCahier/{id}" ,name="downloadCahier")
+     */
+    public function downloadImageAction(Module $module)
+    {
+        $downloadHandler= $this->get("vich_uploader.download_handler");
+        return $downloadHandler->downloadObject($module, $fileField = 'cahierFile');
+    }
+
+    /**
+     * @Route("/admin/loadModules",name="loadModules")
+     * @Method({"POST"})
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function loadModulesAction(Request $request){
+        $id=$request->get("id");
+        $departement=$this->getDoctrine()->getRepository("AppBundle:Departement")->find($id);
+        if ($departement!=null){
+            $modules =$this->getDoctrine()->getRepository("AppBundle:Module")->findBy(["departement" => $departement]);
+            return $this->render("Admin/Modules/listmodules.html.twig",array("modules"=>$modules));
+        }
+        $modules =$this->getDoctrine()->getRepository("AppBundle:Module")->findAll();
+        return $this->render("Admin/Modules/listmodules.html.twig",array("modules"=>$modules));
+    }
+
+    /**
+     * @Route("/admin/showFiliere" ,name="showFiliere")
+     */
+    public function showFiliereAction(Request $request){
+        $form=$this->createForm(FiliereFieldType::class);
+        if($request->isMethod("POST")){
+            $id=$request->get("id");
+            if (isset($id)){
+                $filiere=$this->getDoctrine()->getRepository("AppBundle:Filiere")->find($id);
+                return $this->render("Admin/Filieres/listfilieres.html.twig",["filiere"=>$filiere]);
+            }
+        }
+        return $this->render("Admin/Filieres/list.html.twig",array("form"=>$form->createView()));
+    }
+
+    /**
+     * @Route("/admin/addFiliere",name="addFiliere")
+     */
+    public function addFiliereAction(Request $request)
+    {
+        $form=$this->createForm(FiliereType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $filiere=new Filiere();
+            $filiere->setName($form->getData()["name"]);
+            $niveau1=new Niveau();
+            $niveau1->setLibelle($form->getData()["premiere"]);
+            $s1=new Semestre();
+            $s1->setLibelle("S1");
+            $s2=new Semestre();
+            $s2->setLibelle("S2");
+            $niveau1->addSemestre($s1);
+            $niveau1->addSemestre($s2);
+            $niveau2=new Niveau();
+            $niveau2->setLibelle($form->getData()["deuxieme"]);
+            $s3=new Semestre();
+            $s3->setLibelle("S3");
+            $s4=new Semestre();
+            $s4->setLibelle("S4");
+            $niveau2->addSemestre($s3);
+            $niveau2->addSemestre($s4);
+            $niveau3=new Niveau();
+            $niveau3->setLibelle($form->getData()["troisieme"]);
+            $s5=new Semestre();
+            $s5->setLibelle("S5");
+            $niveau3->addSemestre($s5);
+
+            if ($form->getData()["nbrSemestres"]==6){
+                $s6=new Semestre();
+                $s6->setLibelle("S6");
+                $niveau3->addSemestre($s6);
+            }
+            $filiere->addNiveau($niveau1);
+            $filiere->addNiveau($niveau2);
+            $filiere->addNiveau($niveau3);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($filiere);
+            $entityManager->flush();
+            $this->addFlash("success","La filière a été ajouté avec succés");
+            return $this->redirectToRoute("showFiliere");
+        }
+        return $this->render("Admin/Filieres/addFiliere.html.twig",array("form"=>$form->createView()));
+    }
+
+    /**
+     * @Route("/admin/renderEnseignementForm",name="renderEnseignementForm")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function renderEnseignementFormAction(Request $request){
+        $id=$request->get("id");
+        $semestre=$this->getDoctrine()->getRepository("AppBundle:Semestre")->find($id);
+        $enseignements=$semestre->getEnseignements();
+        $modules=array();
+        foreach ($enseignements as $i => $enseignement)
+        {
+            $modules[]=$enseignement->getModule();
+        }
+        $form=$this->createForm(ModuleFieldType::class, array(), [ 'data'=> $modules]);
+        return $this->render("Admin/Filieres/editEnseignements.html.twig",array("form"=>$form->createView()));
+    }
+
+    /**
+     * @Route("/admin/setEnseeignements",name="setEnseeignements")
+     * @Method({"POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function setEnseeignementsAction(Request $request){
+        if($request->isMethod("POST")){
+            $form=$this->createForm(ModuleFieldType::class,array(),["data"=>null]);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em=$this->getDoctrine()->getManager();
+                $idSemestre=$form->getData()["id"];
+                $modules=$form->getData()["modules"];
+                $semestre=$this->getDoctrine()->getRepository("AppBundle:Semestre")->find($idSemestre);
+                $enseignements=$semestre->getEnseignements();
+                $oldModules=new ArrayCollection();
+                foreach ($enseignements as $i => $enseignement)
+                {
+                    $module=$enseignement->getModule();
+                    if($modules->contains($module)){
+                        $oldModules->add($module);
+                    }else{
+                        $semestre->removeEnseignement($enseignement);
+                        $em->remove($enseignement);
+                    }
+                }
+                dump($semestre);
+                dump($oldModules);
+                $newModules=new ArrayCollection();
+                foreach ($modules as $i => $module)
+                {
+                    if (!$oldModules->contains($module)){
+                        $newModules->add($module);
+                    }
+                }
+                foreach ($newModules as $i => $module){
+                    $enseignement=new Enseignement();
+                    $enseignement->setModule($module);
+                    $semestre->addEnseignement($enseignement);
+                }
+                dump($semestre);
+                $em->persist($semestre);
+                $em->flush();
+                $this->addFlash("success","Modules enregistrés avec succes");
+            }else
+                $this->addFlash("error","Une erreur dans le formulaire");
+        }
+        return $this->redirectToRoute("showFiliere");
+    }
+
+    /**
+     * @Route("/admin/renderModuleForm",name="renderModuleForm")
+     */
+    public function renderModuleFormAction(Request $request){
+        $id=$request->get("id");
+        $module=$this->getDoctrine()->getRepository("AppBundle:Module")->find($id);
+        $form=$this->createForm(EditModuleType::class,$module);
+        return $this->render("Admin/Modules/editmoduleform.html.twig",array("form"=>$form->createView()));
+    }
+
+    /**
+     * @Route("/admin/editModule",name="editModule")
+     */
+    public function editModuleAction(Request $request){
+        $form=$this->createForm(EditModuleType::class);
+        $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $id=$form->getData()["id"];
+                $module=$entityManager->getRepository("AppBundle:Module")->find($id);
+                if ($module->getLibelle()!=$form->getData()["libelle"]){
+                    if($entityManager->getRepository("AppBundle:Module")->isLibelleExist($form->getData()["libelle"])){
+                        $this->addFlash("error","modification imossible, nom déja existant");
+                        return $this->redirectToRoute('modulesList');
+                    }
+                }
+                $module->setLibelle($form->getData()["libelle"]);
+                $module->setDepartement($form->getData()["departement"]);
+                $module->setNbrHCours($form->getData()["nbrHCours"]);
+                $module->setNbrHTd($form->getData()["nbrHTd"]);
+                $module->setCahierFile($form->getData()["cahierFile"]);
+                $this->addFlash("success","Le module a été modifié correctement");
+                $entityManager->persist($module);
+                $entityManager->flush();
+            }
+        return $this->redirectToRoute("modulesList");
+    }
+
+    /**
+     * @Route("/admin/renderNotAffectedModules",name="renderNotAffectedModules")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function renderNotAffectedModulesAction(Request $request){
+        $idSemestre=$request->get("idSemestre");
+        $em=$this->getDoctrine()->getManager();
+        $semestre=$em->getRepository("AppBundle:Semestre")->find($idSemestre);
+        $enseignements=$semestre->getEnseignements();
+        $modules=array();
+        foreach ($enseignements as $i => $enseignement)
+        {
+            if($enseignement->getTeacher()===null){
+                $module=$enseignement->getModule();
+                $modules[]=$module;
+            }
+        }
+        $form=$this->createForm(EnseignementsFieldType::class,array(),["modules"=>$modules,'csrf_protection' => false]);
+        return $this->render("Admin/Teachers/notAffectedModulesField.html.twig",["form"=>$form->createView()]);
+    }
+
+    /**
+     * @Route("/admin/affectModules",name="affectModules")
+     */
+    public function affectModulesAction(Request $request){
+        $form=$this->createForm(EnseignementsFieldType::class,array(),['csrf_protection' => false]);
+        $semestreForm=$this->createForm(SemestreFieldType::class);
+        $form->handleRequest($request);
+        $semestreForm->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid() && $semestreForm->isSubmitted() && $semestreForm->isValid()) {
+            $id=$semestreForm->getData()["id"];
+            $modules=$form->getData()["modules"];
+            $semestre=$semestreForm->getData()["semestre"];
+            $em=$this->getDoctrine()->getManager();
+            $teacher=$em->getRepository("AppBundle:Teacher")->find($id);
+            foreach ($modules as $module){
+                $enseignement=$em->getRepository("AppBundle:Enseignement")->findOneBy(array("module"=>$module,"semestre"=>$semestre));
+                $enseignement->setTeacher($teacher);
+                $em->persist($enseignement);
+            }
+            $em->flush();
+            $this->addFlash("success","modules Affectés correctement.");
+        }else{
+            $this->addFlash("error","form invalid.");
+        }
+        return $this->redirectToRoute("teachersList");
+    }
+
+    /**
+     * @Route("/admin/renderAffectedModules",name="renderAffectedModules")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function renderAffectedModulesAction(Request $request){
+        $idTeacher=$request->get("id");
+        $em=$this->getDoctrine()->getManager();
+        $teacher=$em->getRepository("AppBundle:Teacher")->find($idTeacher);
+        $enseignements=$em->getRepository("AppBundle:Enseignement")->findBy(array("teacher"=>$teacher));
+        $modules=array();
+        foreach ($enseignements as $i => $enseignement)
+        {
+                $module=$enseignement->getModule();
+                $modules[]=$module;
+        }
+        $form=$this->createForm(AffectedModulesType::class,array(),["modules"=>$modules,"data"=>$modules]);
+        return $this->render("Admin/Teachers/affectedModules.html.twig",["form"=>$form->createView()]);
+    }
+
+    /**
+     * @Route("/admin/detacherModules",name="detacherModules")
+     */
+    public function detacherModulesAction(Request $request){
+        $form=$this->createForm(AffectedModulesType::class,array(),["modules"=>null,"data"=>null]);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em=$this->getDoctrine()->getManager();
+            $id=$form->getData()["id"];
+            $modules=$form->getData()["modules"];
+            $teacher=$em->getRepository("AppBundle:Teacher")->find($id);
+            $enseignements=$em->getRepository("AppBundle:Enseignement")->findBy(array("teacher"=>$teacher));
+            foreach ($enseignements as $i => $enseignement)
+            {
+                $module=$enseignement->getModule();
+                if (!$modules->contains($module)){
+                    $enseignement->setTeacher(null);
+                    $em->persist($enseignement);
+                }
+            }
+            $this->addFlash("success","modification enregistré avec succés");
+            $em->flush();
+        }else{
+            $this->addFlash("error","erreur dans le formulaire");
+        }
+        return $this->redirectToRoute("teachersList");
+    }
+
+    /**
+     * @Route("/admin/deleteModule",name="deleteModule")
+     */
+    public function deleteModuleAction(Request $request){
+        $idModule=$request->get("idModule");
+        $em=$this->getDoctrine()->getManager();
+        $module=$em->getRepository("AppBundle:Module")->find("$idModule");
+        $em->remove($module);
+        $this->addFlash("success","Module suprimer avec succés.");
+        return $this->redirectToRoute("modulesList");
+    }
+
 }

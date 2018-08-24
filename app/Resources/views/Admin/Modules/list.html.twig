@@ -5,56 +5,60 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Listes des professeurs</h4>
+                    <h4>Listes des Modules</h4>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="card-body table-responsive">
                     <div class="row">
-                        <div class="col-md-4">{{ form_start(form) }} {{ form_row(form.departemrnt,{"id":"depSelect"}) }} {{ form_end(form) }}</div>
-                        <div class="col-md-1 offset-md-7" style="margin-top: 20px"><a title="Ajouter un professeur" class="btn btn-primary btn-xs" href="{{ path('addTeacher') }}"><i class="fa fa-plus"></i></a></div>
+                        <div class="col-md-4">{{ form_start(form) }} {{ form_row(form.departemrnt,{"id":"depSelectForModules"}) }} {{ form_end(form) }}</div>
+                        <div class="col-md-1 offset-md-7" style="margin-top: 20px"><a title="Ajouter un module" class="btn btn-primary btn-xs" href="{{ path('addModule') }}"><i class="fa fa-plus"></i></a></div>
                     </div>
-                    <table width="100%" class="table table-hover table-striped table-bordered" id="dataTables">
+                    <table width="100%" class="table table-hover table-striped table-bordered table-sm" id="dataTables">
                         <thead>
                         <tr class="odd gradeX">
-                            <th>Somme</th>
                             <th>Nom</th>
+                            <th>Nombre d'heures de Cours</th>
+                            <th>Nombre d'heures de TD</th>
+                            <th>Cahier de Charge</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody id="tableBody">
-                        {% for teacher in teachers %}
+                        {% for module in modules %}
                             <tr>
-                                <td>{{ teacher.somme }}</td>
-                                <td>{{ teacher.secondName }}</td>
-                                <td>{{ teacher.firstName }}</td>
-                                <td>{{ teacher.email }}</td>
-                                <td>{{ teacher.tel }}</td>
-                                <td>{{ teacher.departement.name }}</td>
+                                <td>{{ module.libelle }}</td>
+                                <td>{{ module.nbrHCours }}</td>
+                                <td>{{ module.nbrHTd }}</td>
                                 <td>
                                     <div style="display: inline-block;">
-                                        <button title="Modifier"
-                                                class="btn btn-success btn-xs editTeacher"
-                                                data-toggle="modal"
-                                                data-id="{{ teacher.id }}"
-                                        ><i class="fa fa-edit"></i>
-                                        </button>
-                                        {% if teacher.enabled == 1 %}
-                                            {# Bouton pour Bloquer un etudiant#}
-                                            <button title="Bloquer"
-                                                    class="btn btn-danger btn-xs bloquerModale"
-                                                    data-id="{{ teacher.id }}"><i
-                                                        class="fa fa-ban"></i>
-                                            </button>
+                                        {% if module.cahierName is defined and module.cahierName is not null  %}
+                                        <a title="Telecharger" href="{{ path('downloadCahier',{'id':module.id}) }}"
+                                           class="btn btn-success btn-xs"
+                                        ><i class="fas fa-download"></i>
+                                        </a>
+                                        <a title="Consulter" href="{{ asset(vich_uploader_asset(module, 'cahierFile')) }}"
+                                           class="btn btn-primary btn-xs"
+                                         target="_blank"><i class="fas fa-eye"></i>
+                                        </a>
                                         {% else %}
-                                            {# Bouton pour Débloquer un étudiant #}
-                                            <button title="deBloquer"
-                                                    class="btn btn-secondary btn-xs dbloquerModale"
-                                                    data-id="{{ teacher.id }}"><i
-                                                        class="fa fa-ban"></i>
-                                            </button>
-                                            {# Bouton Pour Débloquer un Broker #}
+                                            <p class="text-center" style="color: red;">aucune fichier n'est renseigné</p>
                                         {% endif %}
                                     </div>
                                 </td>
+                                            <td>
+                                                <button title="Modifier"
+                                                        class="btn btn-success btn-xs editModuleModal"
+                                                        data-toggle="modal"
+                                                        data-id="{{ module.id }}"
+                                                ><i class="fa fa-edit"></i>
+                                                </button>
+                                                <button title="Supprimer"
+                                                        class="btn btn-danger btn-xs deleteModuleModal"
+                                                        data-toggle="modal"
+                                                        data-id="{{ module.id }}"
+                                                ><i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </td>
                             </tr>
                         {% endfor %}
 

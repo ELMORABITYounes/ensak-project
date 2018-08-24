@@ -1,0 +1,18 @@
+{% for niveau in filiere.niveaux %}
+    {% for semestre in niveau.semestres %}
+        <tr>
+            <td>{{ semestre.libelle }}</td>
+            <td>{{ niveau.libelle }}</td>
+            <td>
+                <div style="display: inline-block;">
+                    <button title="Modules Enseignés"
+                       class="btn btn-success btn-xs editEnseignementsModal"
+                            data-toggle="modal"
+                            data-id="{{ semestre.id }}"
+                    ><i class="fas fa-book"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+{% endfor %}

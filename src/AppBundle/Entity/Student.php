@@ -35,7 +35,7 @@ class Student extends User
     }
 
     /**
-     * @ORM\Column(type="integer",unique=true)
+     * @ORM\Column(type="bigint",unique=true)
      * @Assert\Length(min=10,max=10)
      * @var integer
      */

@@ -8,7 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class NiveauType extends AbstractType
+class NiveauFieldType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -24,7 +24,7 @@ class NiveauType extends AbstractType
                 'group_by' => function (Niveau $niveau) {
                     return $niveau->getFiliere();
                 },
-                "attr"=>array("id"=>"niveau")
+                "attr"=>array("id"=>"niveau","class"=>"multipleSelect")
                 // used to render a select box, check boxes or radios
                 // 'multiple' => true,
                 // 'expanded' => true,

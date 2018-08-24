@@ -1,4 +1,4 @@
-{% extends 'layout.html.twig' %}
+{% extends 'profilebase.html.twig' %}
 
 {% block body%}
     <div class="profile">
@@ -11,18 +11,9 @@
                 <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
-                        Admin
+                        <h3>Espace Admin</h3>
                     </div>
-                    <div class="profile-usertitle-job">
-                        Administrateur du site
                     </div>
-                </div>
-                <!-- END SIDEBAR USER TITLE -->
-                <!-- SIDEBAR BUTTONS -->
-                <div class="profile-userbuttons">
-                </div>
-                <!-- END SIDEBAR BUTTONS -->
-                <!-- SIDEBAR MENU -->
                 <div class="profile-usermenu sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
@@ -36,7 +27,7 @@
                                 Départements </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('studentsList') }}">
+                            <a class="nav-link" href="{{ path('showFiliere') }}">
                                 <i class="fas fa-map-signs"></i>
                                 Filières </a>
                         </li>
@@ -51,7 +42,7 @@
                                 Professeurs </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('studentsList') }}">
+                            <a class="nav-link" href="{{ path('modulesList') }}">
                                 <i class="fas fa-book"></i>
                                 Modules </a>
                         </li>
@@ -93,7 +84,7 @@
     {# Modal pour l'édition d'un étudiant #}
 
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content" id="editForm">
 
             </div>
@@ -106,7 +97,7 @@
     {# Modal pour le bloquage de l'étudiant #}
 
     <div id="fbloquer" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" >Bloquer L'étudiant</h5>
@@ -137,7 +128,7 @@
     {# Modal pour le débloquage de l'étudiant #}
 
     <div id="debloquerStudentModale" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" >Débloquer L'étudiant</h5>
@@ -168,7 +159,7 @@
     {# Modal pour l'édition d'un professeur #}
 
     <div class="modal fade" id="editTeacher" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content" id="editTeacherForm">
 
             </div>
@@ -180,7 +171,7 @@
     {# Modal pour l'édition d'un departement #}
 
     <div class="modal fade" id="editDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content" id="editDepartmentForm">
 
             </div>
@@ -188,8 +179,54 @@
     </div>
 
     {# /Modal pour l'édition d'un departement #}
+
+    <!-- Modal -->
+    <div class="modal fade" id="editEnseignementsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="editEnseignementsForm">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editModuleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="editModuleForm">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteModuleModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >Suprimer le modules</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ path('deleteModule') }}" method="post" class="form-horizental">
+                        <input id="id" name="idModule" type="hidden">
+                        <div class="row form-group" align="center">
+                            <div class="col-md-12" align="center">
+                                <div class="alert alert-danger">Voulez-vous vraiment suprimer ce module?
+                                Cette Opération peut entainer la supression d'autres dépendances!</div>
+                            </div>
+                        </div>
+                        <div align="center">
+                            <button type="button" class="btn btn-danger annuler" data-dismiss="modal">Non</button>
+                            <button type="submit" class="btn btn-primary">Oui</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block javascripts %}
+
     <script>
         $(function () {
             $('#dataTables').on('click',".editModal",function () {
@@ -237,7 +274,16 @@
         $("#niveauSelect").change(function () {
             $.post('{{ path('load')}}', { niveau:$(this).val() },
                 function(data) {
+                    var table = $('#dataTables').DataTable();
+                    table.destroy();
                     $("#tableBody").html(data);
+                    $('#dataTables').DataTable({
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                        },
+                        "pageLength": 50,
+                        "lengthChange": false
+                    });
                 }).fail(function() {
                 alert( "error" );
             });
@@ -246,15 +292,60 @@
         $("#depSelect").change(function () {
             $.post('{{ path('loadTeachers')}}', { dep:$(this).val() },
                 function(data) {
+                    var table = $('#dataTables').DataTable();
+                    table.destroy();
                     $("#tableBody").html(data);
+                    $('#dataTables').DataTable({
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                        },
+                        "pageLength": 50,
+                        "lengthChange": false
+                    });
                 }).fail(function() {
                 alert( "error" );
             });
         });
 
-        /* Pour le bouton Bloquer le freelancer */
 
-        $(".bloquerModale").click(function () {
+        $("#depSelectForModules").change(function () {
+            $.post('{{ path('loadModules')}}', { id:$(this).val() },
+                function(data) {
+                    var table = $('#dataTables').DataTable();
+                    table.destroy();
+                    $("#tableBody").html(data);
+                    $('#dataTables').DataTable({
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                        },
+                        "pageLength": 50,
+                        "lengthChange": false
+                    });
+                }).fail(function() {
+                alert( "error" );
+            });
+        });
+
+
+        $("#filiereSelect").change(function () {
+            $.post('{{ path('showFiliere')}}', { id:$(this).val() },
+                function(data) {
+                    var table = $('#dataTables').DataTable();
+                    table.destroy();
+                    $("#tableBody").html(data);
+                    $('#dataTables').DataTable({
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                        },
+                        "pageLength": 50,
+                        "lengthChange": false
+                    });
+                }).fail(function() {
+                alert( "error" );
+            });
+        });
+        
+        $('#dataTables').on('click',".bloquerModale",function () {
             var id = $(this).data("id");
             $("#fbloquer").find("#id").val(id);
             $("#fbloquer").modal("show");
@@ -262,11 +353,51 @@
 
         /* Pour le bouton Bloquer le freelancer */
 
-
-        $(".dbloquerModale").click(function () {
+        $('#dataTables').on('click',".dbloquerModale",function () {
             var id = $(this).data("id");
             $("#debloquerStudentModale").find("#id").val(id);
             $("#debloquerStudentModale").modal("show");
         });
+
+
+
+        $(function () {
+            $('#dataTables').on('click',".editEnseignementsModal",function () {
+                $('#editEnseignementsForm').html('<div class="row" style="margin: auto"><img src="{{ asset("img/loading-blue2.gif") }}" style="{display: block;margin: auto}"></div>');
+                var id = $(this).data("id");
+                $.get('{{ path('renderEnseignementForm')}}', { id:id },
+                    function(data) {
+                        $("#editEnseignementsForm").html(data);
+                        $('.multipleSelect').select2({
+                            maximumSelectionLength: 8
+                        });
+                        $("#editEnseignementsForm").find("#id").val(id);
+                    }).fail(function() {
+                    alert( "error" );
+                });
+                $("#editEnseignementsModal").modal("show");
+            });
+        });
+
+        $(function () {
+            $('#dataTables').on('click',".editModuleModal",function () {
+                $('#editModuleForm').html('<div class="row" style="margin: auto"><img src="{{ asset("img/loading-blue2.gif") }}" style="{display: block;margin: auto}"></div>')
+                var id = $(this).data("id");
+                $.get('{{ path('renderModuleForm')}}', { id:id },
+                    function(data) {
+                        $("#editModuleForm").html(data);
+                    }).fail(function() {
+                    alert( "error" );
+                });
+                $("#editModuleModal").modal("show");
+            });
+        });
+
+        $('#dataTables').on('click',".deleteModuleModal",function () {
+            var id = $(this).data("id");
+            $("#deleteModuleModal").find("#id").val(id);
+            $("#deleteModuleModal").modal("show");
+        });
+
     </script>
 {% endblock %}

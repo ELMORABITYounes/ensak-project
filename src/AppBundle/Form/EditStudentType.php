@@ -43,8 +43,9 @@ class EditStudentType extends AbstractType
             ->add('email', EmailType::class,array('label' => 'Addresse émail'))
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
-                'allow_delete' => true,
-                'label'=>"chaoisir une image",'download_link' => false,
+                'allow_delete' => false,
+                'label'=>"Image de profile(Optionnel)",
+                'download_uri' => false,
             ]);
     }
 

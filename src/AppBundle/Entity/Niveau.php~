@@ -30,7 +30,7 @@ class Niveau
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Filiere",cascade={"persist"},inversedBy="niveaux")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Filiere",cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      *
      */
@@ -38,7 +38,7 @@ class Niveau
     private $filiere;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Semestre",mappedBy="niveau",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Semestre",mappedBy="niveau")
      * @var Semestre
      */
     private $semestres;
@@ -105,46 +105,5 @@ class Niveau
     {
         return $this->libelle;
     }
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->semestres = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add semestre
-     *
-     * @param \AppBundle\Entity\Semestre $semestre
-     *
-     * @return Niveau
-     */
-    public function addSemestre(\AppBundle\Entity\Semestre $semestre)
-    {
-        $this->semestres[] = $semestre;
-        $semestre->setNiveau($this);
-        return $this;
-    }
-
-    /**
-     * Remove semestre
-     *
-     * @param \AppBundle\Entity\Semestre $semestre
-     */
-    public function removeSemestre(\AppBundle\Entity\Semestre $semestre)
-    {
-        $this->semestres->removeElement($semestre);
-    }
-
-    /**
-     * Get semestres
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSemestres()
-    {
-        return $this->semestres;
-    }
 }
+

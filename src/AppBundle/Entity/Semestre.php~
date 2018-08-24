@@ -36,8 +36,7 @@ class Semestre
     private $niveau;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Enseignement",mappedBy="semestre",cascade={"persist","remove"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Enseignement",mappedBy="semestre",cascade={"persist"})
      */
     private $enseignements;
 
@@ -95,48 +94,40 @@ class Semestre
      */
     public function __construct()
     {
-        $this->enseignements = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->enseignemets = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add enseignement
+     * Add enseignemet
      *
-     * @param \AppBundle\Entity\Enseignement $enseignement
+     * @param \AppBundle\Entity\Enseignement $enseignemet
      *
      * @return Semestre
      */
-    public function addEnseignement(\AppBundle\Entity\Enseignement $enseignement)
+    public function addEnseignemet(\AppBundle\Entity\Enseignement $enseignemet)
     {
-        $this->enseignements[] = $enseignement;
-        $enseignement->setSemestre($this);
+        $this->enseignemets[] = $enseignemet;
+        $enseignemet->setSemestre($this);
         return $this;
     }
 
     /**
-     * Remove enseignement
+     * Remove enseignemet
      *
-     * @param \AppBundle\Entity\Enseignement $enseignement
+     * @param \AppBundle\Entity\Enseignement $enseignemet
      */
-    public function removeEnseignement(\AppBundle\Entity\Enseignement $enseignement)
+    public function removeEnseignemet(\AppBundle\Entity\Enseignement $enseignemet)
     {
-        $this->enseignements->removeElement($enseignement);
+        $this->enseignemets->removeElement($enseignemet);
     }
 
     /**
-     * Get enseignements
+     * Get enseignemets
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEnseignements()
+    public function getEnseignemets()
     {
-        return $this->enseignements;
-    }
-
-    /**
-     * @param mixed $enseignements
-     */
-    public function setEnseignements($enseignements)
-    {
-        $this->enseignements = $enseignements;
+        return $this->enseignemets;
     }
 }

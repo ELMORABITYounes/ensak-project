@@ -10,4 +10,16 @@ namespace AppBundle\Repository;
  */
 class ModuleRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function isLibelleExist($name)
+    {
+        if($this->createQueryBuilder('d')
+            ->where('d.libelle = :name')
+            ->setParameter('name', $name)
+            ->getQuery()
+            ->getResult()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

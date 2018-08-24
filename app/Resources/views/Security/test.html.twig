@@ -8,7 +8,10 @@
     <title>Document</title>
 </head>
 <body>
-<img src="{{ vich_uploader_asset(teacher, 'imageFile') }}" alt="{{ teacher.imageName }}" />
-<a href="{{ chemin }}">{{ vich_uploader_asset(teacher, 'imageFile') }}</a>
+<a href="{{ path('downloadCahier',{'id':4}) }}" >download</a>
+<a href="{{ path('renderEnseignementForm',{'id':10}) }}" >sem</a>
+
+
+{{ form(form) }}
 </body>
 </html>

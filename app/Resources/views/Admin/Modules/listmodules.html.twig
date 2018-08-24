@@ -1,0 +1,37 @@
+{% for module in modules %}
+    <tr>
+        <td>{{ module.libelle }}</td>
+        <td>{{ module.nbrHCours }}</td>
+        <td>{{ module.nbrHTd }}</td>
+        <td>
+            <div style="display: inline-block;">
+                {% if module.cahierName is defined and module.cahierName is not null  %}
+                    <a title="Telecharger" href="{{ path('downloadCahier',{'id':module.id}) }}"
+                       class="btn btn-success btn-xs"
+                    ><i class="fas fa-download"></i>
+                    </a>
+                    <a title="Consulter" href="{{ asset(vich_uploader_asset(module, 'cahierFile')) }}"
+                       class="btn btn-primary btn-xs"
+                       target="_blank"><i class="fas fa-eye"></i>
+                    </a>
+                {% else %}
+                    <p class="text-center" style="color: red;">aucune fichier n'est renseigné</p>
+                {% endif %}
+            </div>
+        </td>
+        <td>
+            <button title="Modifier"
+                    class="btn btn-success btn-xs editModuleModal"
+                    data-toggle="modal"
+                    data-id="{{ module.id }}"
+            ><i class="fa fa-edit"></i>
+            </button>
+            <button title="Supprimer"
+                    class="btn btn-danger btn-xs deleteModuleModal"
+                    data-toggle="modal"
+                    data-id="{{ module.id }}"
+            ><i class="fas fa-trash-alt"></i>
+            </button>
+        </td>
+    </tr>
+{% endfor %}

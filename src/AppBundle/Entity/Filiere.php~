@@ -29,7 +29,7 @@ class Filiere
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Niveau",mappedBy="filiere",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Niveau",mappedBy="niveau",cascade={"persist"})
      * @var Niveau
      */
     private $niveaux;
@@ -71,45 +71,5 @@ class Filiere
     public function __toString(){
         return $this->name;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->niveaux = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add niveaux
-     *
-     * @param \AppBundle\Entity\Niveau $niveaux
-     *
-     * @return Filiere
-     */
-    public function addNiveau(\AppBundle\Entity\Niveau $niveau)
-    {
-        $this->niveaux[] = $niveau;
-        $niveau->setFiliere($this);
-        return $this;
-    }
-
-    /**
-     * Remove niveaux
-     *
-     * @param \AppBundle\Entity\Niveau $niveaux
-     */
-    public function removeNiveau(\AppBundle\Entity\Niveau $niveau)
-    {
-        $this->niveaux->removeElement($niveau);
-    }
-
-    /**
-     * Get niveaux
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getNiveaux()
-    {
-        return $this->niveaux;
-    }
 }
+

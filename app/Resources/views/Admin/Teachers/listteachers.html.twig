@@ -8,6 +8,21 @@
         <td>{{ teacher.departement.name }}</td>
         <td>
             <div style="display: inline-block;">
+                <button title="Affecter des modules"
+                        class="btn btn-success btn-xs affecterModuleModal"
+                        data-toggle="modal"
+                        data-id="{{ teacher.id }}"
+                ><i class="fas fa-plus-circle"></i>
+                </button>
+                <button title="Détacher des modules"
+                        class="btn btn-danger btn-xs detacherModuleModal"
+                        data-id="{{ teacher.id }}"
+                ><i class="fas fa-minus-circle"></i>
+                </button>
+            </div>
+        </td>
+        <td>
+            <div style="display: inline-block;">
                 <button title="Modifier"
                         class="btn btn-success btn-xs editTeacher"
                         data-toggle="modal"

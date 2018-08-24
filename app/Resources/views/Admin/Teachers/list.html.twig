@@ -13,7 +13,7 @@
                         <div class="col-md-4">{{ form_start(form) }} {{ form_row(form.departemrnt,{"id":"depSelect"}) }} {{ form_end(form) }}</div>
                         <div class="col-md-1 offset-md-7" style="margin-top: 20px"><a title="Ajouter un professeur" class="btn btn-primary btn-xs" href="{{ path('addTeacher') }}"><i class="fa fa-plus"></i></a></div>
                     </div>
-                    <table width="100%" class="table table-hover table-striped table-bordered" id="dataTables">
+                    <table width="100%" class="table table-hover table-striped table-bordered table-sm" id="dataTables">
                         <thead>
                         <tr class="odd gradeX">
                             <th>Somme</th>
@@ -22,6 +22,7 @@
                             <th>Email</th>
                             <th>Télephone</th>
                             <th>Département</th>
+                            <th>Modules enseignés</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -34,6 +35,21 @@
                                 <td>{{ teacher.email }}</td>
                                 <td>{{ teacher.tel }}</td>
                                 <td>{{ teacher.departement.name }}</td>
+                                <td>
+                                    <div style="display: inline-block;">
+                                        <button title="Affecter des modules"
+                                                class="btn btn-success btn-xs affecterModuleModal"
+                                                data-toggle="modal"
+                                                data-id="{{ teacher.id }}"
+                                        ><i class="fas fa-plus-circle"></i>
+                                        </button>
+                                        <button title="Détacher des modules"
+                                                class="btn btn-danger btn-xs detacherModuleModal"
+                                                data-id="{{ teacher.id }}"
+                                        ><i class="fas fa-minus-circle"></i>
+                                        </button>
+                                    </div>
+                                </td>
                                 <td>
                                     <div style="display: inline-block;">
                                         <button title="Modifier"
@@ -72,5 +88,84 @@
         </div>
         <!-- /.col-lg-12 -->
     </div>
+    <div class="modal fade" id="affecterModuleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Affecter des modules</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {{ form_start(semestreForm,{'action': path('affectModules'), 'method': 'POST'}) }}
+                <div class="modal-body">
+                    {{ form_row(semestreForm.id,{'id':"id"}) }}
+                    {{ form_row(semestreForm.semestre,{"id":"semestreSelect"}) }}
+                    <div id="added-field">
 
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary" desabled>Affecter</button>
+                </div>
+                {{ form_end(semestreForm) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="detacherModuleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="modal-body">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            $('#dataTables').on('click',".affecterModuleModal",function () {
+                var id = $(this).data("id");
+                $("#affecterModuleModal").find('button[type="submit"]').prop('disabled', true);
+                if($("#added-field").find("option").length>0){
+                    $("#affecterModuleModal").find('button[type="submit"]').prop('disabled', false);
+                }
+                $("#affecterModuleModal").find("#id").val(id);
+                $("#affecterModuleModal").modal("show");
+            });
+        });
+        $("#semestreSelect").change(function () {
+            $("#affecterModuleModal").find('button[type="submit"]').prop('disabled', true);
+            var idSemestre=$(this).val();
+            $('#added-field').html('<img src="{{ asset("img/loading.gif") }}" class="img-center">');
+            $.get("{{ path('renderNotAffectedModules') }}",{idSemestre:idSemestre},function (data) {
+                $('#added-field').html(data);
+                $('.multipleSelect').select2({
+                });
+                if($("#added-field").find("option").length>0){
+                    $("#affecterModuleModal").find('button[type="submit"]').prop('disabled', false);
+                }
+            }).fail(function(error) {
+                alert( error )});
+        });
+
+        $(function () {
+            $('#dataTables').on('click',".detacherModuleModal",function () {
+                $('#modal-body').html('<div class="row" style="margin: auto"><img src="{{ asset("img/loading-blue2.gif") }}" style="{display: block;margin: auto}"></div>');
+                var id = $(this).data("id");
+                $.get('{{ path('renderAffectedModules')}}', { id:id },
+                    function(data) {
+                        $("#modal-body").html(data);
+                        $("#modal-body").find("#id").val(id);
+                        $('.multipleSelect').select2({
+                        });
+                    }).fail(function() {
+                    alert( "error" );
+                });
+                $("#detacherModuleModal").modal("show");
+            });
+        });
+    </script>
 {% endblock %}

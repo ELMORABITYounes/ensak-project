@@ -28,7 +28,7 @@ class Teacher extends User
     protected $id;
 
     /**
-     * @ORM\Column(type="integer",unique=true)
+     * @ORM\Column(type="bigint",unique=true)
      * @Assert\Length(min=10,max=10)
      * @var integer
      */

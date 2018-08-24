@@ -81,13 +81,13 @@ vich_uploader:
             uri_prefix:         images/profile
             upload_destination: '%kernel.project_dir%/web/images/profile'
             namer: vich_uploader.namer_origname
-            inject_on_load:     true
+            inject_on_load:     false
             delete_on_update:   true
             delete_on_remove:   true
         cahier_de_charges:
-            uri_prefix:         /files/cahiers
-            upload_destination: '%kernel.project_dir%/files/cahiers'
-            inject_on_load:     true
+            uri_prefix:         files/cahiers
+            upload_destination: '%kernel.project_dir%/web/files/cahiers'
+            inject_on_load:     false
             delete_on_update:   true
             delete_on_remove:   true
-            namer:              vich_uploader.namer_origname
+            namer:              vich_uploader.namer_uniqid
