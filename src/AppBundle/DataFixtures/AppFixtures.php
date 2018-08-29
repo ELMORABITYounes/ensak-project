@@ -12,6 +12,7 @@ use AppBundle\Entity\Departement;
 use AppBundle\Entity\Filiere;
 use AppBundle\Entity\Module;
 use AppBundle\Entity\Niveau;
+use AppBundle\Entity\SecteurActivite;
 use AppBundle\Entity\Semestre;
 use AppBundle\Entity\Student;
 use AppBundle\Entity\Teacher;
@@ -32,11 +33,11 @@ class AppFixtures extends Fixture
         $this->encoder = $encoder;
         $this->entitymanager = $entityManager;
     }
-    /**
+    /*
      * Load data fixtures with the passed EntityManager
      *
      * @param ObjectManager $manager
-     */
+
     public function load(ObjectManager $manager)
     {
         for ($i=0;$i<4;$i++){
@@ -117,6 +118,16 @@ class AppFixtures extends Fixture
             $teacher->setPlainPassword($teacher->getSomme());
             $teacher->setTel("(+212)6".random_int(10000000,99999999));
             $manager->persist($teacher);
+            $manager->flush();
+        }
+    }
+    */
+    public function load(ObjectManager $manager)
+    {
+        for ($i=0;$i<10;$i++) {
+            $sector = new SecteurActivite();
+            $sector->setName("Secteur " . $i);
+            $manager->persist($sector);
             $manager->flush();
         }
     }

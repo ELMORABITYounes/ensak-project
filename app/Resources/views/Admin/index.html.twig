@@ -3,11 +3,6 @@
 {% block body%}
     <div class="profile">
             <div class="profile-sidebar sidebar">
-                <!-- SIDEBAR USERPIC -->
-                <div class="profile-userpic">
-                        <img src="{{ asset('img/avatar.png') }}" class="img-responsive" alt="">
-                </div>
-                <!-- END SIDEBAR USERPIC -->
                 <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
@@ -47,9 +42,14 @@
                                 Modules </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa fa-envelope"></i>
-                                Messagerie </a>
+                            <a class="nav-link" href="{{ path('societesList') }}">
+                                <i class="fas fa-industry"></i>
+                                Sociétés </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('societesList') }}">
+                                <i class="fas fa-briefcase"></i>
+                                Stages </a>
                         </li>
                     </ul>
                 </div>
@@ -224,6 +224,16 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="editSocieteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="editSocieteForm">
+
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 {% block javascripts %}
 
@@ -398,6 +408,39 @@
             $("#deleteModuleModal").find("#id").val(id);
             $("#deleteModuleModal").modal("show");
         });
+
+        $("#secteurSelect").change(function () {
+            $.post('{{ path('loadSocietes')}}', { secteur:$(this).val() },
+                function(data) {
+                    var table = $('#dataTables').DataTable();
+                    table.destroy();
+                    $("#tableBody").html(data);
+                    $('#dataTables').DataTable({
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                        },
+                        "pageLength": 50,
+                        "lengthChange": false
+                    });
+                }).fail(function() {
+                alert( "error" );
+            });
+        });
+
+        $(function () {
+            $('#dataTables').on('click',".editSocieteModal",function () {
+                $('#editSocieteForm').html('<div class="row" style="margin: auto"><img src="{{ asset("img/loading-blue2.gif") }}" style="{display: block;margin: auto}"></div>')
+                var id = $(this).data("id");
+                $.get('{{ path('renderSocieteForm')}}', { id:id },
+                    function(data) {
+                        $("#editSocieteForm").html(data);
+                    }).fail(function() {
+                    alert( "error" );
+                });
+                $("#editSocieteModal").modal("show");
+            });
+        });
+
 
     </script>
 {% endblock %}

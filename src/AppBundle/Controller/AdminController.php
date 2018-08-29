@@ -683,6 +683,7 @@ class AdminController extends Controller
         $em=$this->getDoctrine()->getManager();
         $module=$em->getRepository("AppBundle:Module")->find("$idModule");
         $em->remove($module);
+        $em->flush();
         $this->addFlash("success","Module suprimer avec succés.");
         return $this->redirectToRoute("modulesList");
     }

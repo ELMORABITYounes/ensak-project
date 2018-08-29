@@ -1,0 +1,21 @@
+{% for societe in societes %}
+    <tr>
+        <td>{{ societe.name }}</td>
+        <td>{{ societe.address }}</td>
+        <td>
+            {% for secteurActivite in societe.secteursActivites %}
+                {{ secteurActivite.name }}<br>
+            {% endfor %}
+        </td>
+        <td>
+            <div style="display: inline-block;">
+                <button title="Modifier"
+                        class="btn btn-success btn-xs editSocieteModal"
+                        data-toggle="modal"
+                        data-id="{{ societe.id }}"
+                ><i class="fa fa-edit"></i>
+                </button>
+            </div>
+        </td>
+    </tr>
+{% endfor %}
