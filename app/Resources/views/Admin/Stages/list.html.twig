@@ -1,0 +1,195 @@
+{% extends 'Admin/index.html.twig' %}
+
+{% block content %}
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Nouveaux stages</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Historique des stage</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="padding: 20px 15px 0 15px">
+            <div class="row">
+                <div style="margin: auto 15px 20px auto;"><a title="Ajouter une société" class="btn btn-primary btn-xs" href="{{ path('addStage') }}"><i class="fa fa-plus"></i> Ajouter un stage</a></div>
+            </div>
+            <table width="100%" class="table table-hover table-striped nowrap" style="width:100%" id="dataTables2">
+                    <thead>
+                    <tr class="odd gradeX">
+                        <th data-priority="1">Etudiant</th>
+                        <th>Niveau d'études</th>
+                        <th data-priority="3">Entreprise</th>
+                        <th data-priority="4">Période de stage</th>
+                        <th data-priority="4">Professeur encadrant</th>
+                        <th data-priority="4">Encadrant éxterne</th>
+                        <th >Sujet</th>
+                        <th >Téchnologies</th>
+                        <th data-priority="5">Type de stage</th>
+                        <th data-priority="2">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    {% for stage in newStages %}
+                    <tr>
+                    <td>{{ stage.student.firstName }}</td>
+                    <td>{{ stage.student.niveau.libelle }}</td>
+                    <td>{{ stage.societe.name }}</td>
+                        <td>de {{ stage.dateDebut|date("d-m-Y") }} à {{ stage.dateFin|date("d-m-Y") }}</td>
+                        <td>M. {{ stage.professeurEncadrant.firstName}} {{ stage.professeurEncadrant.secondName}}</td>
+                        <td>M. {{ stage.encadrantExtern.firstName}} {{ stage.encadrantExtern.secondName}}</td>
+                        <td>{{ stage.sujet }}</td>
+                        <td>{{ stage.technologies }}</td>
+                        {% if stage.dateSoutenance is defined %}
+                            <td >
+                                Stage PFE
+                            </td>
+                        {% else %}
+                            <td >
+                                Stage PFA
+                            </td>
+                        {% endif %}
+                    <td>
+                        <div style="display: inline-block;">
+                            <a title="Modifier"
+                                    class="btn btn-success btn-xs" href="{{ path('editStage',{"id":stage.id}) }}"
+                            ><i class="fa fa-edit"></i>
+                            </a>
+                        </div>
+                        {% if stage.soutenance is defined and stage.soutenance is null%}
+                            <div style="display: inline-block;">
+                                <a href="{{ path('addSoutenance',{"id":stage.id}) }}" title="Définir un soutenance"
+                                        class="btn btn-primary btn-xs"
+                                ><i class="fas fa-desktop"></i>
+                                </a>
+                            </div>
+                        {% endif %}
+                        {% if stage.soutenance is defined and stage.soutenance is not null%}
+                            <div style="display: inline-block;">
+                                <a href="{{ path('editSoutenance',{"id":stage.id}) }}" title="Modifier le soutenance"
+                                   class="btn btn-warning btn-xs"
+                                ><i class="fas fa-desktop"></i>
+                                </a>
+                            </div>
+                        {% endif %}
+                    </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="padding: 40px 15px 0 15px">
+            <table width="100%" class="table table-hover table-striped nowrap" style="width:100%"  id="dataTables1">
+                    <thead>
+                    <tr class="odd gradeX">
+                        <th data-priority="1">Etudiant</th>
+                        <th>Niveau d'études</th>
+                        <th data-priority="3">Entreprise</th>
+                        <th data-priority="4">Période de stage</th>
+                        <th>Sujet</th>
+                        <th data-priority="5">Type de stage</th>
+                        <th data-priority="2">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    {% for stage in oldStages %}
+                        <tr>
+                            <td>{{ stage.student.firstName }}</td>
+                            <td>{{ stage.student.niveau.libelle }}</td>
+                            <td>{{ stage.societe.name }}</td>
+                            <td>de {{ stage.dateDebut|date("d-m-Y") }} à {{ stage.dateFin|date("d-m-Y") }}</td>
+                            <td>{{ stage.sujet }}</td>
+                            {% if stage.dateSoutenance is defined %}
+                                <td >
+                                    Stage PFE
+                                </td>
+                            {% else %}
+                                <td >
+                                    Stage PFA
+                                </td>
+                            {% endif %}
+                            <td>
+                                <div style="display: inline-block;">
+                                    <a title="Modifier"
+                                       class="btn btn-success btn-xs" href="{{ path('editStage',{"id":stage.id}) }}"
+                                    ><i class="fa fa-edit"></i>
+                                    </a>
+                                </div>
+                                {% if stage.soutenance is defined and stage.soutenance is null%}
+                                    <div style="display: inline-block;">
+                                        <a href="{{ path('addSoutenance',{"id":stage.id}) }}" title="Définir un soutenance"
+                                           class="btn btn-primary btn-xs"
+                                        ><i class="fas fa-desktop"></i>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                                {% if stage.soutenance is defined and stage.soutenance is not null%}
+                                    <div style="display: inline-block;">
+                                        <a href="{{ path('editSoutenance',{"id":stage.id}) }}" title="Modifier le soutenance"
+                                           class="btn btn-warning btn-xs"
+                                        ><i class="fas fa-desktop"></i>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+    <script>
+
+        $(function () {
+            $('#dataTables1').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                },
+                "pageLength": 50,
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return "Détails du stage";
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table'
+                        } )
+                    }
+                }            });
+
+            $('#dataTables2').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                },
+                "pageLength": 50,
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return "Détails du stage";
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table'
+                        } )
+                    }
+                }
+            });
+
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+                $($.fn.dataTable.tables(true)).DataTable()
+                    .columns.adjust()
+                    .fixedColumns().relayout();
+            });
+        });
+    </script>
+{% endblock %}

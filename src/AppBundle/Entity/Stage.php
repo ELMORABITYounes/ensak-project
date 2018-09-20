@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Stage
@@ -26,32 +28,145 @@ abstract class Stage
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="sujet", type="string", length=255)
      */
-    private $sujet;
+    protected $sujet;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\Date()
+     * @Assert\NotBlank()
      * @ORM\Column(name="dateDebut", type="date")
      */
-    private $dateDebut;
+    protected $dateDebut;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\Date()
+     * @Assert\NotBlank()
      * @ORM\Column(name="dateFin", type="date")
      */
-    private $dateFin;
+    protected $dateFin;
 
     /**
      * @var array
-     *
-     * @ORM\Column(name="technologies", type="array")
+     * @Assert\NotBlank()
+     * @ORM\Column(name="technologies", type="string")
      */
-    private $technologies;
+    protected $technologies;
 
+    /**
+     * @var EncadrantExterne
+     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\EncadrantExterne",cascade={"persist"})
+     */
+    protected $encadrantExtern;
+
+    /**
+     * @var Societe
+     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Societe",cascade={"persist"})
+     *
+     */
+    protected $societe;
+
+
+    /**
+     * @var Teacher
+     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Teacher",cascade={"persist"})
+     *
+     */
+    protected $professeurEncadrant;
+
+    /**
+     * @return EncadrantExterne
+     */
+    public function getEncadrantExtern()
+    {
+        return $this->encadrantExtern;
+    }
+
+
+    /**
+     * @var Student;
+     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Student",cascade={"persist"})
+     *
+     */
+    private $student;
+
+    /**
+     * @return Student
+     */
+    public function getStudent()
+    {
+        return $this->student;
+    }
+
+    /**
+     * @param Student $student
+     */
+    public function setStudent($student)
+    {
+        $this->student = $student;
+    }
+
+    /**
+     * @param EncadrantExterne $encadrantExtern
+     */
+    public function setEncadrantExtern($encadrantExtern)
+    {
+        $this->encadrantExtern = $encadrantExtern;
+    }
+
+    /**
+     * @return Teacher
+     */
+    public function getProfesseurEncadrant()
+    {
+        return $this->professeurEncadrant;
+    }
+
+    /**
+     * @param Teacher $professeurEncadrant
+     */
+    public function setProfesseurEncadrant($professeurEncadrant)
+    {
+        $this->professeurEncadrant = $professeurEncadrant;
+    }
+    /**
+     * @return EncadrantExterne
+     */
+    public function getEncadrant()
+    {
+        return $this->encadrantExtern;
+    }
+
+    /**
+     * @param EncadrantExterne $encadrant
+     */
+    public function setEncadrant($encadrant)
+    {
+        $this->encadrantExtern = $encadrant;
+    }
+
+    /**
+     * @return Societe
+     */
+    public function getSociete()
+    {
+        return $this->societe;
+    }
+
+    /**
+     * @param Societe $societe
+     */
+    public function setSociete($societe)
+    {
+        $this->societe = $societe;
+    }
 
     /**
      * Get id

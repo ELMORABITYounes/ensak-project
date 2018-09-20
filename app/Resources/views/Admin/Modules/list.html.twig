@@ -3,71 +3,184 @@
 {% block content %}
     <div class="row">
         <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Listes des Modules</h4>
-                </div>
-                <!-- /.panel-heading -->
-                <div class="card-body table-responsive">
-                    <div class="row">
-                        <div class="col-md-4">{{ form_start(form) }} {{ form_row(form.departemrnt,{"id":"depSelectForModules"}) }} {{ form_end(form) }}</div>
-                        <div class="col-md-1 offset-md-7" style="margin-top: 20px"><a title="Ajouter un module" class="btn btn-primary btn-xs" href="{{ path('addModule') }}"><i class="fa fa-plus"></i></a></div>
-                    </div>
-                    <table width="100%" class="table table-hover table-striped table-bordered table-sm" id="dataTables">
-                        <thead>
-                        <tr class="odd gradeX">
-                            <th>Nom</th>
-                            <th>Nombre d'heures de Cours</th>
-                            <th>Nombre d'heures de TD</th>
-                            <th>Cahier de Charge</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tableBody">
-                        {% for module in modules %}
-                            <tr>
-                                <td>{{ module.libelle }}</td>
-                                <td>{{ module.nbrHCours }}</td>
-                                <td>{{ module.nbrHTd }}</td>
-                                <td>
-                                    <div style="display: inline-block;">
-                                        {% if module.cahierName is defined and module.cahierName is not null  %}
-                                        <a title="Telecharger" href="{{ path('downloadCahier',{'id':module.id}) }}"
-                                           class="btn btn-success btn-xs"
-                                        ><i class="fas fa-download"></i>
-                                        </a>
-                                        <a title="Consulter" href="{{ asset(vich_uploader_asset(module, 'cahierFile')) }}"
-                                           class="btn btn-primary btn-xs"
-                                         target="_blank"><i class="fas fa-eye"></i>
-                                        </a>
-                                        {% else %}
-                                            <p class="text-center" style="color: red;">aucune fichier n'est renseigné</p>
-                                        {% endif %}
-                                    </div>
-                                </td>
-                                            <td>
-                                                <button title="Modifier"
-                                                        class="btn btn-success btn-xs editModuleModal"
-                                                        data-toggle="modal"
-                                                        data-id="{{ module.id }}"
-                                                ><i class="fa fa-edit"></i></button>
-                                                <button title="Supprimer"
-                                                        class="btn btn-danger btn-xs deleteModuleModal"
-                                                        data-toggle="modal"
-                                                        data-id="{{ module.id }}"
-                                                ><i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                            </tr>
-                        {% endfor %}
-
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
+            <h2 class="page-header">Liste des modules</h2>
+            <hr>
         </div>
-        <!-- /.col-lg-12 -->
+    </div>
+    <div class="row">
+        <div class="col-md-4">{{ form_start(form) }} {{ form_row(form.departemrnt,{"id":"depSelectForModules"}) }} {{ form_end(form) }}</div>
+        <span class="hidden" id="loading"><img src="{{ asset('img/loading-1.gif') }}"
+                                               style="height: 30px;width: 30px;margin-top: 36px;"></span>
+        <div style="margin-top: 20px;margin-right: 20px;margin-left: auto"><a title="Ajouter un module"
+                                                                              class="btn btn-primary btn-xs"
+                                                                              href="{{ path('addModule') }}"><i
+                        class="fa fa-plus"></i> Ajouter un module</a></div>
+    </div>
+    <table width="100%" class="table table-hover table-striped nowrap" style="width:100%" id="dataTables">
+        <thead>
+        <tr class="odd gradeX">
+            <th data-priority="1">Nom</th>
+            <th>Nombre d'heures de Cours</th>
+            <th>Nombre d'heures de TD</th>
+            <th>Cahier de Charge</th>
+            <th data-priority="2">Action</th>
+        </tr>
+        </thead>
+        <tbody id="tableBody">
+        {% for module in modules %}
+            <tr>
+                <td>{{ module.libelle }}</td>
+                <td>{{ module.nbrHCours }}</td>
+                <td>{{ module.nbrHTd }}</td>
+                <td>
+                    <div style="display: inline-block;">
+                        {% if module.cahierName is defined and module.cahierName is not null %}
+                            <a title="Telecharger" href="{{ path('downloadCahier',{'id':module.id}) }}"
+                               class="btn btn-success btn-xs"
+                            ><i class="fas fa-download"></i>
+                            </a>
+                            <a title="Consulter" href="{{ asset(vich_uploader_asset(module, 'cahierFile')) }}"
+                               class="btn btn-primary btn-xs"
+                               target="_blank"><i class="fas fa-eye"></i>
+                            </a>
+                        {% else %}
+                            <p class="text-center" style="color: red;">aucune fichier n'est renseigné</p>
+                        {% endif %}
+                    </div>
+                </td>
+                <td>
+                    <button title="Modifier"
+                            class="btn btn-success btn-xs editModuleModal"
+                            data-toggle="modal"
+                            data-id="{{ module.id }}"
+                    ><i class="fa fa-edit"></i></button>
+                    <button title="Supprimer"
+                            class="btn btn-danger btn-xs deleteModuleModal"
+                            data-toggle="modal"
+                            data-id="{{ module.id }}"
+                    ><i class="fas fa-trash-alt"></i></button>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="editModuleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="editModuleForm">
+
+            </div>
+        </div>
     </div>
 
+    <div id="deleteModuleModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: red;color: aliceblue">
+                    <h5 class="modal-title" >Suprimer le modules</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ path('deleteModule') }}" method="post" class="form-horizental">
+                        <input id="id" name="idModule" type="hidden">
+                        <div class="row form-group" align="center">
+                            <div class="col-md-12" align="center">
+                                <div class="alert alert-danger">Voulez-vous vraiment suprimer ce module?
+                                    Cette Opération peut entainer la supression d'autres dépendances!</div>
+                            </div>
+                        </div>
+                        <div align="center">
+                            <button type="button" class="btn btn-danger annuler" data-dismiss="modal">Non</button>
+                            <button type="submit" class="btn btn-primary">Oui</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+    <script>
+        $(function () {
+            $('#dataTables').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                },
+                "pageLength": 50,
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return "Détails du "+data[0];
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table'
+                        } )
+                    }
+                }
+            });
+
+            $(function () {
+                $('#dataTables').on('click',".editModuleModal",function () {
+                    $('#editModuleForm').html('<div class="row" style="margin: auto"><img src="{{ asset("img/loading-blue2.gif") }}" style="{display: block;margin: auto}"></div>')
+                    var id = $(this).data("id");
+                    $.get('{{ path('renderModuleForm')}}', { id:id },
+                        function(data) {
+                            $("#editModuleForm").html(data);
+                        }).fail(function() {
+                        alert( "error" );
+                    });
+                    $("#editModuleModal").modal("show");
+                });
+            });
+
+            $('#dataTables').on('click',".deleteModuleModal",function () {
+                var id = $(this).data("id");
+                $("#deleteModuleModal").find("#id").val(id);
+                $("#deleteModuleModal").modal("show");
+            });
+            $("#depSelectForModules").change(function () {
+                $("#loading").removeClass("hidden");
+                $.post('{{ path('loadModules')}}', { id:$(this).val() },
+                    function(data) {
+                        var table = $('#dataTables').DataTable();
+                        table.destroy();
+                        $("#tableBody").html(data);
+                        $('#dataTables').DataTable({
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                            },
+                            "pageLength": 50,
+                            responsive: {
+                                details: {
+                                    display: $.fn.dataTable.Responsive.display.modal( {
+                                        header: function ( row ) {
+                                            var data = row.data();
+                                            return "Détails du "+data[0];
+                                        }
+                                    } ),
+                                    renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                                        tableClass: 'table'
+                                    } )
+                                }
+                            }
+                        });
+                        $("#loading").addClass("hidden");
+                    }).fail(function() {
+                    alert( "error" );
+                });
+            });
+
+
+        });
+    </script>
 {% endblock %}

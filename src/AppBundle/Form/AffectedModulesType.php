@@ -18,7 +18,7 @@ class AffectedModulesType extends AbstractType
                 'class' => 'AppBundle\Entity\Module',
                 'choice_label' => 'libelle',
                 'label' => 'Modules enseigné par le professeur',
-                'placeholder'=>"selectionez les modules à affecter",
+                'placeholder'=>"Prière de séléctionner les modules à affécter",
                 'multiple' => true          ,
                 'choices'=>$options["modules"],
                 "attr"=>array("class"=>"multipleSelect"),

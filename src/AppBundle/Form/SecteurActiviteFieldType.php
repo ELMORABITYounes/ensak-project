@@ -18,9 +18,8 @@ class SecteurActiviteFieldType extends AbstractType
 
                 // uses the User.username property as the visible option string
                 'choice_label' => 'name',
-                'label' => "Secteur d'activités",
+                'label' => "lister par secteur d'activités:",
                 'placeholder'=>"Choisissez un secteur d'activités",
-                "attr"=>array("class"=>"multipleSelect"),
             ));
     }
 

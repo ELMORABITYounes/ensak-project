@@ -19,12 +19,12 @@ class NiveauFieldType extends AbstractType
 
                 // uses the User.username property as the visible option string
                 'choice_label' => 'libelle',
-                'label' => 'NIVEAU D\'ÉTUDES',
-                'placeholder'=>"Choisir un niveau",
+                'label' => "Lister par niveau d'études:",
+                'placeholder'=>"Choisissez un niveau",
                 'group_by' => function (Niveau $niveau) {
                     return $niveau->getFiliere();
                 },
-                "attr"=>array("id"=>"niveau","class"=>"multipleSelect")
+                "attr"=>array("id"=>"niveau")
                 // used to render a select box, check boxes or radios
                 // 'multiple' => true,
                 // 'expanded' => true,

@@ -4,10 +4,16 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\EncadrantExterne;
 use AppBundle\Entity\Societe;
+use AppBundle\Entity\Soutenance;
+use AppBundle\Entity\Stage;
+use AppBundle\Entity\StagePFA;
+use AppBundle\Entity\StagePFE;
 use AppBundle\Form\EditSocieteType;
 use AppBundle\Form\EncadrantType;
 use AppBundle\Form\SecteurActiviteFieldType;
 use AppBundle\Form\SocieteType;
+use AppBundle\Form\StagePFAType;
+use AppBundle\Form\StagePFEType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,11 +21,121 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class StageController extends Controller
 {
-    public function indexAction($name)
+
+    /**
+     * @Route("/admin/stagesList",name="stagesList")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function stagesListAction()
     {
-        return $this->render('', array('name' => $name));
+        $em=$this->getDoctrine()->getManager();
+        $oldStages=$em->getRepository("AppBundle:Stage")->getOldStages();
+        $newStages=$em->getRepository("AppBundle:Stage")->getNewStages();
+        return $this->render('Admin/Stages/list.html.twig',array("oldStages"=>$oldStages,"newStages"=>$newStages));
     }
 
+    /**
+     * @Route("/admin/addSoutenance/{id}",name="addSoutenance",requirements={"id"="\d+"})
+     *
+     */
+    public function addSoutenance(Request $request,StagePFE $stage){
+        $soutenance=new Soutenance();
+        $form=$this->createForm("AppBundle\Form\SoutenanceType",$soutenance);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em=$this->getDoctrine()->getManager();
+            $stage->setSoutenance($soutenance);
+            $em->persist($stage);
+            $em->flush();
+            $this->addFlash("success","La soutenance à été ajouté corréctement");
+            return $this->redirectToRoute("stagesList");
+        }
+        return $this->render("Admin/Stages/addSoutenance.html.twig",["form"=>$form->createView()]);
+    }
+    /**
+     * @Route("/admin/editSoutenance/{id}",name="editSoutenance",requirements={"id"="\d+"})
+     *
+     */
+    public function editSoutenance(Request $request,StagePFE $stage){
+        $soutenance=$stage->getSoutenance();
+        $form=$this->createForm("AppBundle\Form\SoutenanceType",$soutenance);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em=$this->getDoctrine()->getManager();
+            $stage->setSoutenance($soutenance);
+            $em->persist($stage);
+            $em->flush();
+            $this->addFlash("success","La soutenance à été modifié corréctement");
+            return $this->redirectToRoute("stagesList");
+        }
+        return $this->render("Admin/Stages/editSoutenance.html.twig",["form"=>$form->createView()]);
+    }
+
+    /**
+     * @Route("admin/editStage/{id}",name="editStage" , requirements={"id"="\d+"})
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editStage(Request $request,Stage $stage){
+        if ($stage instanceof StagePFE){
+            $form=$this->createForm(StagePFEType::class,$stage);
+        }else{
+            $form=$this->createForm(StagePFEType::class,$stage);
+        }
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+          $em=$this->getDoctrine()->getManager();
+          $em->persist($stage);
+          $em->flush();
+          $this->addFlash("success","Le stage à été modifié corréctement");
+          return $this->redirectToRoute("stagesList");
+        }
+        return $this->render("Admin/Stages/editStage.html.twig",["form"=>$form->createView()]);
+    }
+
+
+    /**
+     * @Route("/admin/addStage",name="addStage")
+     */
+    public function addStageAction(Request $request)
+    {
+        $types = [
+            'Formpfe' => "Stage PFE",
+            'Formpfa' => "Stage PFA",
+        ];
+        $forms=array();
+        $stagepfe=new StagePFE();
+        $formpfe=$this->createForm(StagePFEType::class,$stagepfe);
+        $forms[]=$formpfe;
+        $stagepfa=new StagePFA();
+        $formpfa=$this->createForm(StagePFAType::class,$stagepfa);
+        $forms[]=$formpfa;
+        if ($request->isMethod('POST')) {
+            foreach ($forms as $form) {
+                $form->handleRequest($request);
+
+                if (!$form->isSubmitted()) continue; // no need to validate a form that isn't submitted
+
+                if ($form->isValid()) {
+                    $entityManager = $this->getDoctrine()->getManager();
+                    if ($form == $formpfe){
+                        $entityManager->persist($stagepfe);
+                    }else{
+                        $entityManager->persist($stagepfa);
+                    }
+                    $entityManager->flush();
+                    $this->addFlash("success","Le stage a été ajouté avec succés");
+                    return $this->redirectToRoute("stagesList");
+                    break; // stop processing as we found the form we have to deal with
+                }else{
+
+                }
+            }
+        }
+        $views = [];
+        $views[]=$formpfe->createView();
+        $views[]=$formpfa->createView();
+        return $this->render("Admin/Stages/addStage.html.twig",array("forms"=>$views, 'types' => $types));
+    }
 
     /**
      * @Route("/admin/societesList",name="societesList")
@@ -96,6 +212,7 @@ class StageController extends Controller
             }
             $societe->setName($form->getData()["name"]);
             $societe->setAddress($form->getData()["address"]);
+            $societe->setVille($form->getData()["ville"]);
             $societe->setSecteursActivites($form->getData()["secteursActivites"]);
             $this->addFlash("success","La société a été modifié correctement");
             $entityManager->persist($societe);

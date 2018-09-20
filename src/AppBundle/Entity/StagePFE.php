@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * StagePFE
@@ -22,45 +24,55 @@ class StagePFE extends Stage
     private $id;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateSoutenance", type="datetime",nullable=true)
+     * @var Soutenance
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Soutenance",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $dateSoutenance;
+    private $soutenance;
 
 
     /**
-     * Get id
-     *
-     * @return int
+     * @Assert\Callback
      */
-    public function getId()
+    public function validate(ExecutionContextInterface $context, $payload)
     {
-        return $this->id;
+        if($this->dateDebut != null && $this->dateFin != null){
+        $diff=$this->dateFin->diff($this->dateDebut);
+        $months=$diff->m;
+        if($months<4){
+        $context->buildViolation("la durée d'un stage pfe doit etre au minimum 4 mois ")
+            ->atPath('dateFin')
+            ->addViolation();
+        }
+            if($months>6){
+                $context->buildViolation("la durée d'un stage pfe ne peut pas dépasser 6 mois ")
+                    ->atPath('dateFin')
+                    ->addViolation();
+            }
+        }
     }
 
     /**
-     * Set dateSoutenance
+     * Set soutenance
      *
-     * @param \DateTime $dateSoutenance
+     * @param \AppBundle\Entity\Soutenance $soutenance
      *
      * @return StagePFE
      */
-    public function setDateSoutenance($dateSoutenance)
+    public function setSoutenance(\AppBundle\Entity\Soutenance $soutenance = null)
     {
-        $this->dateSoutenance = $dateSoutenance;
+        $this->soutenance = $soutenance;
 
         return $this;
     }
 
     /**
-     * Get dateSoutenance
+     * Get soutenance
      *
-     * @return \DateTime
+     * @return \AppBundle\Entity\Soutenance
      */
-    public function getDateSoutenance()
+    public function getSoutenance()
     {
-        return $this->dateSoutenance;
+        return $this->soutenance;
     }
 }
-

@@ -3,92 +3,91 @@
 {% block content %}
     <div class="row">
         <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Listes des professeurs</h4>
-                </div>
-                <!-- /.panel-heading -->
-                <div class="card-body table-responsive">
-                    <div class="row">
-                        <div class="col-md-4">{{ form_start(form) }} {{ form_row(form.departemrnt,{"id":"depSelect"}) }} {{ form_end(form) }}</div>
-                        <div class="col-md-1 offset-md-7" style="margin-top: 20px"><a title="Ajouter un professeur" class="btn btn-primary btn-xs" href="{{ path('addTeacher') }}"><i class="fa fa-plus"></i></a></div>
-                    </div>
-                    <table width="100%" class="table table-hover table-striped table-bordered table-sm" id="dataTables">
-                        <thead>
-                        <tr class="odd gradeX">
-                            <th>Somme</th>
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                            <th>Email</th>
-                            <th>Télephone</th>
-                            <th>Département</th>
-                            <th>Modules enseignés</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tableBody">
-                        {% for teacher in teachers %}
-                            <tr>
-                                <td>{{ teacher.somme }}</td>
-                                <td>{{ teacher.secondName }}</td>
-                                <td>{{ teacher.firstName }}</td>
-                                <td>{{ teacher.email }}</td>
-                                <td>{{ teacher.tel }}</td>
-                                <td>{{ teacher.departement.name }}</td>
-                                <td>
-                                    <div style="display: inline-block;">
-                                        <button title="Affecter des modules"
-                                                class="btn btn-success btn-xs affecterModuleModal"
-                                                data-toggle="modal"
-                                                data-id="{{ teacher.id }}"
-                                        ><i class="fas fa-plus-circle"></i>
-                                        </button>
-                                        <button title="Détacher des modules"
-                                                class="btn btn-danger btn-xs detacherModuleModal"
-                                                data-id="{{ teacher.id }}"
-                                        ><i class="fas fa-minus-circle"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div style="display: inline-block;">
-                                        <button title="Modifier"
-                                                class="btn btn-success btn-xs editTeacher"
-                                                data-toggle="modal"
-                                                data-id="{{ teacher.id }}"
-                                        ><i class="fa fa-edit"></i>
-                                        </button>
-                                        {% if teacher.enabled == 1 %}
-                                            {# Bouton pour Bloquer un etudiant#}
-                                            <button title="Bloquer"
-                                                    class="btn btn-danger btn-xs bloquerModale"
-                                                    data-id="{{ teacher.id }}"><i
-                                                        class="fa fa-ban"></i>
-                                            </button>
-                                        {% else %}
-                                            {# Bouton pour Débloquer un étudiant #}
-                                            <button title="deBloquer"
-                                                    class="btn btn-secondary btn-xs dbloquerModale"
-                                                    data-id="{{ teacher.id }}"><i
-                                                        class="fa fa-ban"></i>
-                                            </button>
-                                            {# Bouton Pour Débloquer un Broker #}
-                                        {% endif %}
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
+            <h2 class="page-header">Liste des professeurs</h2>
+            <hr>
         </div>
-        <!-- /.col-lg-12 -->
     </div>
-    <div class="modal fade" id="affecterModuleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="table-responsive-md">
+        <div class="row">
+            <div class="col-md-4">{{ form_start(form) }} {{ form_row(form.departemrnt,{"id":"depSelect"}) }} {{ form_end(form) }}</div>
+            <span class="hidden" id="loading"><img src="{{ asset('img/loading-1.gif') }}"
+                                                   style="height: 30px;width: 30px;margin-top: 36px;"></span>
+            <div style="margin-top: 20px;margin-right: 20px;margin-left: auto"><a title="Ajouter un professeur"
+                                                                                  class="btn btn-primary btn-xs"
+                                                                                  href="{{ path('addTeacher') }}"><i
+                            class="fa fa-plus"></i></a></div>
+        </div>
+        <table width="100%" class="table table-hover table-striped nowrap" style="width:100%" id="dataTables">
+            <thead>
+            <tr class="odd gradeX">
+                <th data-priority="1">Somme</th>
+                <th data-priority="2">Nom</th>
+                <th data-priority="2">Prénom</th>
+                <th>Email</th>
+                <th>Télephone</th>
+                <th>Département</th>
+                <th data-priority="1">Modules enseignés</th>
+                <th data-priority="1">Actions</th>
+            </tr>
+            </thead>
+            <tbody id="tableBody">
+            {% for teacher in teachers %}
+                <tr>
+                    <td>{{ teacher.somme }}</td>
+                    <td>{{ teacher.secondName }}</td>
+                    <td>{{ teacher.firstName }}</td>
+                    <td>{{ teacher.email }}</td>
+                    <td>{{ teacher.tel }}</td>
+                    <td>{{ teacher.departement.name }}</td>
+                    <td>
+                        <div style="display: inline-block;">
+                            <button title="Affecter des modules"
+                                    class="btn btn-success btn-xs affecterModuleModal"
+                                    data-toggle="modal"
+                                    data-id="{{ teacher.id }}"
+                            ><i class="fas fa-plus-circle"></i>
+                            </button>
+                            <button title="Détacher des modules"
+                                    class="btn btn-danger btn-xs detacherModuleModal"
+                                    data-id="{{ teacher.id }}"
+                            ><i class="fas fa-minus-circle"></i>
+                            </button>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="display: inline-block;">
+                            <button title="Modifier"
+                                    class="btn btn-success btn-xs editTeacher"
+                                    data-toggle="modal"
+                                    data-id="{{ teacher.id }}"
+                            ><i class="fa fa-edit"></i>
+                            </button>
+                            {% if teacher.enabled == 1 %}
+                                {# Bouton pour Bloquer un etudiant#}
+                                <button title="Bloquer"
+                                        class="btn btn-danger btn-xs bloquerModale"
+                                        data-id="{{ teacher.id }}"><i
+                                            class="fa fa-ban"></i>
+                                </button>
+                            {% else %}
+                                {# Bouton pour Débloquer un étudiant #}
+                                <button title="deBloquer"
+                                        class="btn btn-secondary btn-xs dbloquerModale"
+                                        data-id="{{ teacher.id }}"><i
+                                            class="fa fa-ban"></i>
+                                </button>
+                                {# Bouton Pour Débloquer un Broker #}
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+    <div class="modal fade" id="affecterModuleModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -114,22 +113,172 @@
         </div>
     </div>
 
-    <div class="modal fade" id="detacherModuleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="detacherModuleModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content" id="modal-body">
 
             </div>
         </div>
     </div>
+    {# Modal pour l'édition d'un professeur #}
+
+    <div class="modal fade" id="editTeacher" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="editTeacherForm">
+
+            </div>
+        </div>
+    </div>
+
+    {# /Modal pour l'édition d'un professeur #}
+
+    {# Modal pour le bloquage de l'étudiant #}
+
+    <div id="fbloquer" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: red;color: white">
+                    <h5 class="modal-title" >Bloquer L'étudiant</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ path('disableStudent') }}" method="post" class="form-horizental">
+                        <input id="id" name="idStudent" type="hidden">
+                        <div class="row form-group" align="center">
+                            <div class="col-md-12" align="center">
+                                <div class="alert alert-danger">Voulez-vous vraiment bloquer cette étudiant?</div>
+                            </div>
+                        </div>
+                        <div align="center">
+                            <button type="submit" class="btn btn-primary">Oui</button>
+                            <button type="button" class="btn btn-danger annuler" data-dismiss="modal">Non</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Modal pour le bloquage de l'étudiant #}
+
+    {# Modal pour le débloquage de l'étudiant #}
+
+    <div id="debloquerStudentModale" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: green;color: white">
+                    <h5 class="modal-title" >Débloquer L'étudiant</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ path('enableStudent') }}" method="post" class="form-horizental">
+                        <input id="id" name="idStudent" type="hidden">
+                        <div class="row form-group" align="center">
+                            <div class="col-md-12" align="center">
+                                <div class="alert alert-danger">Voulez-vous vraiment débloquer cette Etudiant?</div>
+                            </div>
+                        </div>
+                        <div align="center">
+                            <button type="submit" class="btn btn-primary">Oui</button>
+                            <button type="button" class="btn btn-danger annuler" data-dismiss="modal">Non</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {# Modal pour le débloquage de l'étudiant #}
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script>
         $(function () {
-            $('#dataTables').on('click',".affecterModuleModal",function () {
+            $('#dataTables').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                },
+                "pageLength": 50,
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return "Détails de "+data[2]+" "+data[1];
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table'
+                        } )
+                    }
+                }
+            });
+            $("#depSelect").change(function () {
+                $("#loading").removeClass("hidden");
+                $.post('{{ path('loadTeachers')}}', { dep:$(this).val() },
+                    function(data) {
+                        var table = $('#dataTables').DataTable();
+                        table.destroy();
+                        $("#tableBody").html(data);
+                        $('#dataTables').DataTable({
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                            },
+                            "pageLength": 50,
+                            "lengthChange": false,
+                            "scrollX": true,
+                        });
+                        $("#loading").addClass("hidden");
+                    }).fail(function() {
+                    alert( "error" );
+                });
+            });
+            $(function () {
+
+                $('#dataTables').on('click',".editTeacher",function () {
+                    $('#editTeacherForm').html('<div class="row" style="margin: auto"><img src="{{ asset("img/loading-blue2.gif") }}" style="{display: block;margin: auto}"></div>')
+                    var id = $(this).data("id");
+                    $.get('{{ path('renderTeacherForm')}}', { id:id },
+                        function(data) {
+                            $("#editTeacherForm").html(data);
+                        }).fail(function() {
+                        alert( "error" );
+                    });
+                    $("#editTeacher").modal("show");
+                });
+            });
+
+            $(function () {
+                $('#dataTables').on('click',".editEnseignementsModal",function () {
+                    $('#editEnseignementsForm').html('<div class="row" style="margin: auto"><img src="{{ asset("img/loading-blue2.gif") }}" style="{display: block;margin: auto}"></div>');
+                    var id = $(this).data("id");
+                    $.get('{{ path('renderEnseignementForm')}}', { id:id },
+                        function(data) {
+                            $("#editEnseignementsForm").html(data);
+                            $('.multipleSelect').select2({
+                                maximumSelectionLength: 8
+                            });
+                            $("#editEnseignementsForm").find("#id").val(id);
+                        }).fail(function() {
+                        alert( "error" );
+                    });
+                    $("#editEnseignementsModal").modal("show");
+                });
+            });
+
+        });
+        $(function () {
+            $('#dataTables').on('click', ".affecterModuleModal", function () {
                 var id = $(this).data("id");
                 $("#affecterModuleModal").find('button[type="submit"]').prop('disabled', true);
-                if($("#added-field").find("option").length>0){
+                if ($("#added-field").find("option").length > 0) {
                     $("#affecterModuleModal").find('button[type="submit"]').prop('disabled', false);
                 }
                 $("#affecterModuleModal").find("#id").val(id);
@@ -138,34 +287,50 @@
         });
         $("#semestreSelect").change(function () {
             $("#affecterModuleModal").find('button[type="submit"]').prop('disabled', true);
-            var idSemestre=$(this).val();
+            var idSemestre = $(this).val();
             $('#added-field').html('<img src="{{ asset("img/loading.gif") }}" class="img-center">');
-            $.get("{{ path('renderNotAffectedModules') }}",{idSemestre:idSemestre},function (data) {
+            $.get("{{ path('renderNotAffectedModules') }}", {idSemestre: idSemestre}, function (data) {
                 $('#added-field').html(data);
-                $('.multipleSelect').select2({
-                });
-                if($("#added-field").find("option").length>0){
+                $('.multipleSelect').select2({});
+                if ($("#added-field").find("option").length > 0) {
                     $("#affecterModuleModal").find('button[type="submit"]').prop('disabled', false);
                 }
-            }).fail(function(error) {
-                alert( error )});
+            }).fail(function (error) {
+                alert(error)
+            });
         });
 
         $(function () {
-            $('#dataTables').on('click',".detacherModuleModal",function () {
+            $('#dataTables').on('click', ".detacherModuleModal", function () {
                 $('#modal-body').html('<div class="row" style="margin: auto"><img src="{{ asset("img/loading-blue2.gif") }}" style="{display: block;margin: auto}"></div>');
                 var id = $(this).data("id");
-                $.get('{{ path('renderAffectedModules')}}', { id:id },
-                    function(data) {
+                $.get('{{ path('renderAffectedModules') }}', {id: id},
+                    function (data) {
                         $("#modal-body").html(data);
                         $("#modal-body").find("#id").val(id);
-                        $('.multipleSelect').select2({
-                        });
-                    }).fail(function() {
-                    alert( "error" );
+                        $('.multipleSelect').select2({});
+                    }).fail(function () {
+                    alert("error");
                 });
                 $("#detacherModuleModal").modal("show");
             });
         });
+    </script>
+    <script>
+        $(function () {
+            $('#dataTables').on('click',".bloquerModale",function () {
+                var id = $(this).data("id");
+                $("#fbloquer").find("#id").val(id);
+                $("#fbloquer").modal("show");
+            });
+
+            /* Pour le bouton Bloquer les étudiants ou les professeurs */
+
+            $('#dataTables').on('click',".dbloquerModale",function () {
+                var id = $(this).data("id");
+                $("#debloquerStudentModale").find("#id").val(id);
+                $("#debloquerStudentModale").modal("show");
+            });
+        })
     </script>
 {% endblock %}

@@ -1,11 +1,24 @@
 {% for societe in societes %}
     <tr>
         <td>{{ societe.name }}</td>
+        <td>{{ societe.ville }}</td>
         <td>{{ societe.address }}</td>
         <td>
             {% for secteurActivite in societe.secteursActivites %}
                 {{ secteurActivite.name }}<br>
             {% endfor %}
+        </td>
+        <td>
+            <div style="display: inline-block;">
+                <a href="{{ path('listEncadrants',{"id":societe.id}) }}" title="Liste des encadrants"
+                   class="btn btn-success btn-xs"
+                ><i class="fas fa-users"></i>
+                </a>
+                <a href="{{ path('addEncadrant',{"id":societe.id}) }}" title="Ajouter un encadrant"
+                   class="btn btn-primary btn-xs"
+                ><i class="fas fa-user-plus"></i>
+                </a>
+            </div>
         </td>
         <td>
             <div style="display: inline-block;">

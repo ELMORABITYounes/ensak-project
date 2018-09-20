@@ -1,0 +1,32 @@
+{% block _soutenance_membres_entry_row  %}
+    <div class="member">
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-label-group">
+                    {{ form_row(form.firstName) }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-label-group">
+                    {{ form_row(form.secondName) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-label-group">
+                    {{ form_row(form.email) }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-label-group">
+                    {{ form_row(form.type) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

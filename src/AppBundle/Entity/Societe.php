@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Societe
@@ -25,9 +27,33 @@ class Societe
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @param string $ville
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+    }
+
+
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @ORM\Column(name="ville", type="string", length=255)
+     */
+    private $ville;
 
     /**
      * @var string
@@ -42,6 +68,21 @@ class Societe
      */
     private $secteursActivites;
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getEncadrants()
+    {
+        return $this->encadrants->toArray();
+    }
+
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\EncadrantExterne",mappedBy="societe",cascade={"persist"})
+     */
+    private $encadrants;
 
     /**
      * Get id
@@ -148,5 +189,29 @@ class Societe
     public function setSecteursActivites($secteursActivites)
     {
         $this->secteursActivites = $secteursActivites;
+    }
+
+    /**
+     * Add encadrant
+     *
+     * @param \AppBundle\Entity\EncadrantExterne $encadrant
+     *
+     * @return Societe
+     */
+    public function addEncadrant(\AppBundle\Entity\EncadrantExterne $encadrant)
+    {
+        $this->encadrants[] = $encadrant;
+        $encadrant->setSociete($this);
+        return $this;
+    }
+
+    /**
+     * Remove encadrant
+     *
+     * @param \AppBundle\Entity\EncadrantExterne $encadrant
+     */
+    public function removeEncadrant(\AppBundle\Entity\EncadrantExterne $encadrant)
+    {
+        $this->encadrants->removeElement($encadrant);
     }
 }

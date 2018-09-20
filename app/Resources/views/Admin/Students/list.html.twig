@@ -3,27 +3,26 @@
 {% block content %}
     <div class="row">
         <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Listes des étuiants</h4>
-                </div>
-                <!-- /.panel-heading -->
-                <div class="card-body table-responsive">
+            <h2 class="page-header">Liste des étudiants</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="table-responsive-md">
                     <div class="row">
-                        <div class="col-md-4">{{ form_start(form) }} {{ form_row(form.niveau,{"id":"niveauSelect"}) }} {{ form_end(form) }}</div>
-                        <div class="col-md-1 offset-md-7" style="margin-top: 20px"><a title="Ajouter un étudiant" class="btn btn-primary btn-xs" href="{{ path('addStudent') }}"><i class="fa fa-plus"></i></a></div>
+                        <div class="col-md-4">{{ form_start(form) }} {{ form_row(form.niveau,{"id":"niveauSelect"}) }} {{ form_end(form) }}</div><span class="hidden" id="loading"><img src="{{ asset('img/loading-1.gif') }}" style="height: 30px;width: 30px;margin-top: 36px;"></span>
+                        <div style="margin-top: 20px;margin-right: 20px;margin-left: auto"><a title="Ajouter un étudiant" class="btn btn-primary btn-xs" href="{{ path('addStudent') }}"><i class="fa fa-plus"></i> Ajouter un étudiant</a></div>
                     </div>
-                    <table width="100%" class="table table-hover table-striped table-bordered table-sm" id="dataTables">
+                    <table width="100%" class="table table-hover table-striped nowrap" style="width:100%" id="dataTables">
                         <thead>
                         <tr class="odd gradeX">
-                            <th>CNE</th>
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                            <th>Email</th>
-                            <th>Numer de Télephone</th>
+                            <th data-priority="1">CNE</th>
+                            <th data-priority="2">Nom</th>
+                            <th data-priority="2">Prénom</th>
+                            <th data-priority="2">Email</th>
+                            <th>Numéro de Télephone</th>
                             <th>Niveau</th>
                             <th>Filière</th>
-                            <th>Actions</th>
+                            <th data-priority="1">Actions</th>
                         </tr>
                         </thead>
                         <tbody id="tableBody">
@@ -68,11 +67,173 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- /.panel-body -->
+
+
+    {# Modal pour l'édition d'un étudiant #}
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="editForm">
+
             </div>
-            <!-- /.panel -->
         </div>
-        <!-- /.col-lg-12 -->
     </div>
 
+    {# /Modal pour l'édition d'un étudiant #}
+    {# Modal pour le bloquage de l'étudiant #}
+
+    <div id="fbloquer" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: red;color: white">
+                    <h5 class="modal-title" >Bloquer L'étudiant</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ path('disableStudent') }}" method="post" class="form-horizental">
+                        <input id="id" name="idStudent" type="hidden">
+                        <div class="row form-group" align="center">
+                            <div class="col-md-12" align="center">
+                                <div class="alert alert-danger">Voulez-vous vraiment bloquer cette étudiant?</div>
+                            </div>
+                        </div>
+                        <div align="center">
+                            <button type="submit" class="btn btn-primary">Oui</button>
+                            <button type="button" class="btn btn-danger annuler" data-dismiss="modal">Non</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Modal pour le bloquage de l'étudiant #}
+
+    {# Modal pour le débloquage de l'étudiant #}
+
+    <div id="debloquerStudentModale" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: green;color: white">
+                    <h5 class="modal-title" >Débloquer L'étudiant</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ path('enableStudent') }}" method="post" class="form-horizental">
+                        <input id="id" name="idStudent" type="hidden">
+                        <div class="row form-group" align="center">
+                            <div class="col-md-12" align="center">
+                                <div class="alert alert-danger">Voulez-vous vraiment débloquer cette Etudiant?</div>
+                            </div>
+                        </div>
+                        <div align="center">
+                            <button type="submit" class="btn btn-primary">Oui</button>
+                            <button type="button" class="btn btn-danger annuler" data-dismiss="modal">Non</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {# Modal pour le débloquage de l'étudiant #}
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(function () {
+            $('#dataTables').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                },
+                "pageLength": 50,
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal( {
+                            header: function ( row ) {
+                                var data = row.data();
+                                return "Détails de "+data[1]+" "+data[2];
+                            }
+                        } ),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                            tableClass: 'table'
+                        } )
+                    }
+                }
+            });
+
+            $(function () {
+                $('#dataTables').on('click',".editModal",function () {
+                    $('#editForm').html('<div class="row" style="margin: auto"><img src="{{ asset("img/loading-blue2.gif") }}" style="{display: block;margin: auto}"></div>')
+                    var id = $(this).data("id");
+                    $.get('{{ path('renderForm')}}', { id:id },
+                        function(data) {
+                            $("#editForm").html(data);
+                        }).fail(function() {
+                        alert( "error" );
+                    });
+                    $("#editModal").modal("show");
+                });
+            });
+
+            $("#niveauSelect").change(function () {
+                $("#loading").removeClass("hidden");
+                $.post('{{ path('load')}}', { niveau:$(this).val() },
+                    function(data) {
+                        var table = $('#dataTables').DataTable();
+                        table.destroy();
+                        $("#tableBody").html(data);
+                        $('#dataTables').DataTable({
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                            },
+                            "pageLength": 50,
+                            responsive: {
+                                details: {
+                                    display: $.fn.dataTable.Responsive.display.modal( {
+                                        header: function ( row ) {
+                                            var data = row.data();
+                                            return "Détails de "+data[1]+" "+data[2];
+                                        }
+                                    } ),
+                                    renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                                        tableClass: 'table'
+                                    } )
+                                }
+                            }
+                        });
+                        $("#loading").addClass("hidden");
+                    }).fail(function() {
+                    alert( "error" );
+                });
+            });
+
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#dataTables').on('click',".bloquerModale",function () {
+                var id = $(this).data("id");
+                $("#fbloquer").find("#id").val(id);
+                $("#fbloquer").modal("show");
+            });
+
+            /* Pour le bouton Bloquer les étudiants ou les professeurs */
+
+            $('#dataTables').on('click',".dbloquerModale",function () {
+                var id = $(this).data("id");
+                $("#debloquerStudentModale").find("#id").val(id);
+                $("#debloquerStudentModale").modal("show");
+            });
+        })
+    </script>
 {% endblock %}

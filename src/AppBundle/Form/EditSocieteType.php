@@ -16,6 +16,7 @@ class EditSocieteType extends AbstractType
         $builder
             ->add("id",HiddenType::class)
             ->add('name',TextType::class,array('label' => 'Nom de la société'))
+            ->add("ville",TextType::class,array("label"=>"Ville"))
             ->add('address',TextType::class,array('label' => 'Addresse de la société'))
             ->add('secteursActivites', EntityType::class, array(
                 // looks for choices from this entity
@@ -23,7 +24,7 @@ class EditSocieteType extends AbstractType
                 // uses the User.username property as the visible option string
                 'choice_label' => 'name',
                 'label' => "Secteurs d'activités",
-                'placeholder'=>"Choisissez des secteur d'activités",
+                'placeholder'=>"Prière de séléctionner les sécteurs d'activités",
                 "attr"=>array("class"=>"multipleSelect"),
                 "multiple"=>true
             ));

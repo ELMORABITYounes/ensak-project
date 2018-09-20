@@ -10,4 +10,23 @@ namespace AppBundle\Repository;
  */
 class StageRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getOldStages()
+    {
+        $date=new \DateTime();
+        return $this->createQueryBuilder('s')
+            ->where('s.dateFin <= :now')
+            ->setParameter('now', $date->format("Y-m-d"))
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getNewStages()
+    {
+        $date=new \DateTime();
+        return $this->createQueryBuilder('s')
+            ->where('s.dateFin >= :now')
+            ->setParameter('now', $date->format("Y-m-d"))
+            ->getQuery()
+            ->getResult();
+    }
 }

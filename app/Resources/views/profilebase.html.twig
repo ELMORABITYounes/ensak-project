@@ -8,7 +8,7 @@
 
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Kaushan+Script'>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css">
@@ -26,7 +26,10 @@
 
 <!--navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-        <a class="navbar-brand js-scroll-trigger mr-auto" href="#">Gestion de filière</a>
+    <button class="btn btn-md btn-outline-warning hidden" id="toggle-menu" type="button">
+        <i class="fas fa-bars"></i>
+    </button>
+    <a class="navbar-brand mr-auto" href="#"> Ensa Khouriga</a>
         <div>
             <ul class="navbar-nav text-uppercase">
                 <li class="nav-item">
@@ -81,16 +84,62 @@
 
 <script>
     $(function() {
-        $('#dataTables').DataTable({
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
-            },
-            "pageLength": 50,
-            "lengthChange": false
-        });
-    });
-    $(document).ready(function() {
         $('.multipleSelect').select2();
+            $(".close").click(function(e){
+                e.preventDefault();
+                $(this).closest(".alert-message").fadeOut(function(event){
+                    $(this).remove();
+                });
+            });
+
+        $("#toggle-menu").click(function () {
+            var $lefty = $(".sidebar");
+            if($(this).hasClass("hide")) {
+                $(this).toggleClass("hide");
+                $lefty.animate({left: parseInt($lefty.css('left'), 10) == 0 ? -$lefty.outerWidth()-20 : 0});
+                $( ".theContent" ).animate({
+                    marginLeft: "280px",
+                } );
+                $(".footer" ).animate({
+                    marginLeft: "280px",
+                } , function() {
+                    $($.fn.dataTable.tables(true)).DataTable()
+                        .columns.adjust()
+                        .responsive.recalc();
+                });
+
+            }else {
+                $(this).toggleClass("hide");
+                $lefty.animate({left: parseInt($lefty.css('left'), 10) == 0 ? -$lefty.outerWidth()-20 : 0});
+                $( ".theContent" ).animate({
+                    marginLeft: "16px",
+                });
+                $( ".footer" ).animate({
+                    marginLeft: "16px",
+                }, function() {
+                    $($.fn.dataTable.tables(true)).DataTable()
+                        .columns.adjust()
+                        .responsive.recalc();
+                });
+            }
+        });
+
+        if (window.matchMedia('(max-width: 1008px)').matches)
+        {
+            var $lefty = $(".sidebar");
+            $("#toggle-menu").toggleClass("hide");
+            $lefty.animate({left: parseInt($lefty.css('left'), 10) == 0 ? -$lefty.outerWidth()-20 : 0},0);
+            $( ".theContent" ).animate({
+                marginLeft: "16px",
+            },0);
+            $( ".footer" ).animate({
+                marginLeft: "16px",
+            },0, function() {
+                $($.fn.dataTable.tables(true)).DataTable()
+                    .columns.adjust()
+                    .responsive.recalc();
+            });
+        }
     });
 </script>
 {% block javascripts %}

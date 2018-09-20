@@ -15,6 +15,7 @@ class SocieteType extends AbstractType
     {
         $builder
             ->add('name',TextType::class,array('label' => 'Nom de la société'))
+            ->add("ville",TextType::class,array("label"=>"Ville"))
             ->add('address',TextType::class,array('label' => 'Addresse de la société'))
             ->add('secteursActivites', EntityType::class, array(
                 // looks for choices from this entity

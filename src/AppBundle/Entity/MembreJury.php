@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * MembreJury
@@ -12,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class MembreJury
 {
+
     /**
      * @var int
      *
@@ -42,6 +45,55 @@ class MembreJury
      */
     private $email;
 
+
+    /**
+     * @var string
+     *
+     * @Assert\Choice(callback="getTypes")
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @var Soutenance
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Soutenance",cascade={"persist"},inversedBy="membres")
+     */
+    private $soutenance;
+
+
+    /**
+     * @return Soutenance
+     */
+    public function getSoutenance()
+    {
+        return $this->soutenance;
+    }
+
+    /**
+     * @param Soutenance $soutenance
+     */
+    public function setSoutenance($soutenance)
+    {
+        $this->soutenance = $soutenance;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
 
     /**
      * Get id
@@ -124,5 +176,12 @@ class MembreJury
     {
         return $this->email;
     }
+
+    public static function getTypes()
+    {
+        return array("Encadrant"=>"Encadrant", "Présidant"=>"Présidant", "Examinateur"=>"Examinateur");
+    }
+
+
 }
 

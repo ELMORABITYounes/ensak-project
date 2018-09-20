@@ -25,9 +25,33 @@ class Societe
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @param string $ville
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+    }
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=255)
+     */
+    private $ville;
 
     /**
      * @var string
@@ -42,6 +66,21 @@ class Societe
      */
     private $secteursActivites;
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getEncadrants()
+    {
+        return $this->encadrants;
+    }
+
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\EncadrantExterne",mappedBy="societe",cascade={"persist"})
+     */
+    private $encadrants;
 
     /**
      * Get id
@@ -100,5 +139,53 @@ class Societe
     {
         return $this->address;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->secteursActivites = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add secteursActivite
+     *
+     * @param \AppBundle\Entity\SecteurActivite $secteursActivite
+     *
+     * @return Societe
+     */
+    public function addSecteursActivite(\AppBundle\Entity\SecteurActivite $secteurActivite)
+    {
+        $this->secteursActivites[] = $secteurActivite;
+
+        return $this;
+    }
+
+    /**
+     * Remove secteursActivite
+     *
+     * @param \AppBundle\Entity\SecteurActivite $secteursActivite
+     */
+    public function removeSecteursActivite(\AppBundle\Entity\SecteurActivite $secteursActivite)
+    {
+        $this->secteursActivites->removeElement($secteursActivite);
+    }
+
+    /**
+     * Get secteursActivites
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSecteursActivites()
+    {
+        return $this->secteursActivites;
+    }
+
+    /**
+     * @param ArrayCollection $secteursActivites
+     */
+    public function setSecteursActivites($secteursActivites)
+    {
+        $this->secteursActivites = $secteursActivites;
+    }
+}

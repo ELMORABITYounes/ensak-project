@@ -38,7 +38,7 @@ class EncadrantExterne
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=16)
+     * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
 
@@ -50,8 +50,7 @@ class EncadrantExterne
     private $tel;
 
     /**
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Societe",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Societe",cascade={"persist"},inversedBy="encadrants")
      * @var string
      */
     private $societe;

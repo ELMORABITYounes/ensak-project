@@ -2,25 +2,62 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2fa73289-0f91-4d92-8410-d5d43e593e70" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Societes/addEncadrant.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Societes/addSociete.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Societes/editEncadrant.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Societes/editform.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Societes/list.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Societes/listEncadrants.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Societes/listsocietes.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Controller/StageController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Form/EditSocieteType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Form/EncadrantType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Form/SecteurActiviteFieldType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Form/SocieteType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Stages/addSoutenance.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Stages/addStage.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Stages/editSoutenance.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Stages/editStage.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Stages/list.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Stages/soutenanceField.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Soutenance.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AppBundle/Form/MembreJuryType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AppBundle/Form/SoutenanceType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AppBundle/Form/StagePFAType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AppBundle/Form/StagePFEType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/img/loading-1.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ensak-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ensak-project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/Admin/Departments/addDepartement.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Departments/addDepartement.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/Admin/Departments/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Departments/list.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/Admin/Filieres/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Filieres/list.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/Admin/Modules/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Modules/list.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/Admin/Societes/addSociete.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Societes/addSociete.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/Admin/Societes/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Societes/list.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/Admin/Societes/listsocietes.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Societes/listsocietes.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/Admin/Students/addStudent.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Students/addStudent.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/Admin/Students/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Students/list.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/Admin/Students/liststudents.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Students/liststudents.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/Admin/Teachers/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Admin/Teachers/list.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/Admin/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Admin/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/files/cahiers/5b80403e8091d819192686.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/files/cahiers/5b8040588e06b339739575.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/Security/Resetting/forgot_password.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Security/Resetting/forgot_password.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/Security/Resetting/reset.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Security/Resetting/reset.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/Security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Security/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/Security/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/Security/registration/register.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/profilebase.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/profilebase.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/config_dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/config_dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/StageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/StageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/EncadrantExterne.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/EncadrantExterne.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/MembreJury.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/MembreJury.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Societe.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Societe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Stage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Stage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/StagePFA.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/StagePFA.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/StagePFE.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/StagePFE.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/AffectedModulesType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/AffectedModulesType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/DepartementFieldType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/DepartementFieldType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/EditModuleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/EditModuleType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/EditSocieteType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/EditSocieteType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/FiliereFieldType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/FiliereFieldType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/ModuleFieldType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ModuleFieldType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/NiveauFieldType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/NiveauFieldType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/SecteurActiviteFieldType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/SecteurActiviteFieldType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/SocieteType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/SocieteType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Repository/StageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/StageRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/img/loading.gif" beforeDir="false" afterPath="$PROJECT_DIR$/web/img/loading.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/profile.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,13 +69,57 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ensak-project: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ensak-project: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="soutenance: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/index.html.twig">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="addSoutenance.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Stages/addSoutenance.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+            <state relative-caret-position="374">
+              <caret line="104" column="13" lean-forward="true" selection-start-line="104" selection-start-column="13" selection-end-line="104" selection-end-column="13" />
+              <folding>
+                <element signature="e#12#33#0#Twig" expanded="true" />
+                <element signature="e#83#121#0#Twig" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+                <element signature="e#285#292#1" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -73,10 +154,17 @@
       <find>NiveauFieldT</find>
       <find>isM</find>
       <find>depSelect</find>
-      <find>select</find>
-      <find>change</find>
       <find>deleteModuleModal</find>
       <find>deleteModule</find>
+      <find>change</find>
+      <find>getE</find>
+      <find>select</find>
+      <find>select2</find>
+      <find>fili</find>
+      <find>bloq</find>
+      <find>edit</find>
+      <find>module</find>
+      <find>supr</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -85,57 +173,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/EditStudentType.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/layout.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Semestre.php" />
-        <option value="$PROJECT_DIR$/app/config/config_dev.yml" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Module.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Enseignement.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Students/addStudent.html.twig" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/d678e010-8501-47b0-87f4-ea65cfbf6514/console.sql" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/StagePFEType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/StagePFAType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/Security/Resetting/forgot_password.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Security/Resetting/reset.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/Security/registration/register.html.twig" />
+        <option value="$PROJECT_DIR$/web/js/index.js" />
+        <option value="$PROJECT_DIR$/web/js/profile.js" />
+        <option value="$PROJECT_DIR$/web/css/style.css" />
         <option value="$PROJECT_DIR$/app/Resources/views/Security/login.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Modules/editmoduleform.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Repository/ModuleRepository.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/EditModuleType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Teacher.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Student.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/Teacher/index.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Repository/EnseignementRepository.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Teachers/notAffectedModulesField.html.twig" />
-        <option value="$PROJECT_DIR$/web/css/profile.css" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/SemestreFieldType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/EnseignementsFieldType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/AffectedModulesType.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Teachers/affectedModules.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Teachers/list.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Students/liststudents.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/Admin/Teachers/listteachers.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Modules/listmodules.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/User.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Students/list.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Modules/list.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/SecteurActivite.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/SecteurActiviteFieldType.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Societes/addSociete.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/SocieteType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Repository/SecteurActiviteRepository.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/Admin/Societes/listsocietes.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Societes/editform.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/EditSocieteType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Repository/SocieteRepository.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Societes/addSociete.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Societe.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/SocieteType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/EditSocieteType.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Departments/addDepartement.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/EncadrantExterne.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/EncadrantType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Repository/StageRepository.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/ModuleFieldType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/DepartementFieldType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/SecteurActiviteFieldType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/NiveauFieldType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/Admin/Societes/list.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Societes/listEncadrants.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Societes/addEncadrant.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Societes/editEncadrant.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/StageController.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Stage.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/StagePFA.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/StagePFE.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/AppFixtures.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Modules/list.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Departments/list.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Filieres/list.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Teachers/list.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Students/list.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/Admin/index.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/StagePFA.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Stage.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/FiliereFieldType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/MemnbreJuryType.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/profilebase.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Stages/addStage.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Stages/editStage.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/StagePFE.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Soutenance.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/MembreJury.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/SoutenanceType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/MembreJuryType.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Stages/soutenanceField.html.twig" />
+        <option value="$PROJECT_DIR$/web/css/profile.css" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Stages/editSoutenance.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/StageController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Stages/list.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Admin/Stages/addSoutenance.html.twig" />
       </list>
     </option>
   </component>
@@ -196,7 +284,7 @@
       <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="676" />
     <option name="width" value="697" />
     <option name="height" value="745" />
@@ -248,7 +336,7 @@
               <item name="Resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="Admin" type="462c0819:PsiDirectoryNode" />
-              <item name="Societes" type="462c0819:PsiDirectoryNode" />
+              <item name="Stages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ensak-project" type="b2602c69:ProjectViewProjectNode" />
@@ -261,6 +349,38 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ensak-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ensak-project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ensak-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ensak-project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ensak-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ensak-project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Form" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ensak-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ensak-project" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ensak-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ensak-project" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -269,21 +389,23 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="database.console.LAST_STATE" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../my-project" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vcs.patch.path" value="$USER_HOME$/Desktop" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\web\ensak-project\web\images" />
+      <recent name="C:\wamp64\www\web\ensak-project\app\Resources\views\Admin\Stages" />
       <recent name="C:\wamp64\www\web\ensak-project\app\Resources\views\Admin\Societes" />
       <recent name="C:\wamp64\www\web\ensak-project\app\Resources\views\Admin\Filieres" />
       <recent name="C:\wamp64\www\web\ensak-project\app\Resources\views\Admin\Modules" />
-      <recent name="C:\wamp64\www\web\ensak-project\app\Resources\views\Admin\Departments" />
-      <recent name="C:\wamp64\www\web\ensak-project\app\Resources\views\Admin\Teachers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\web\ensak-project\app\Resources\views\Admin" />
@@ -340,6 +462,20 @@
       <workItem from="1535105190251" duration="24293000" />
       <workItem from="1535307856127" duration="1127000" />
       <workItem from="1535451439281" duration="19250000" />
+      <workItem from="1535531280461" duration="18107000" />
+      <workItem from="1535617522510" duration="19151000" />
+      <workItem from="1535704159654" duration="11578000" />
+      <workItem from="1536245928062" duration="3000" />
+      <workItem from="1536252986900" duration="12635000" />
+      <workItem from="1536841287390" duration="4253000" />
+      <workItem from="1536851170229" duration="1556000" />
+      <workItem from="1536856329771" duration="1154000" />
+      <workItem from="1536867627021" duration="936000" />
+      <workItem from="1536868746027" duration="10000" />
+      <workItem from="1537187576826" duration="1623000" />
+      <workItem from="1537269476346" duration="25576000" />
+      <workItem from="1537353544569" duration="34970000" />
+      <workItem from="1537447921376" duration="24583000" />
     </task>
     <task id="LOCAL-00001" summary="custom redirection after login and adding registration forms">
       <created>1534178098873</created>
@@ -359,21 +495,23 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="373712000" />
+    <option name="totallyTimeSpent" value="529847000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18683812" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5030257" side_tool="true" weight="0.44155845" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50378215" side_tool="true" weight="0.32954547" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.9334416" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49621785" weight="0.32954547" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24432677" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4969743" weight="0.36688313" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -383,8 +521,31 @@
       <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.32954547" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
+      <window_info anchor="bottom" id="Database Console" order="13" weight="0.32954547" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22919819" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.9334416" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4969743" weight="0.7451299" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5030257" side_tool="true" weight="0.2792208" />
+      <window_info anchor="bottom" id="Database Console" order="13" weight="0.32954547" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.32954547" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -434,388 +595,415 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/EnseignementRepository.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Societes/listsocietes.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/SemestreFieldType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="17" column="22" lean-forward="true" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Teachers/notAffectedModulesField.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" lean-forward="true" selection-start-column="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/EnseignementsFieldType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/AffectedModulesType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="62" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Teachers/editform.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="69" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="69" />
+        <state relative-caret-position="108">
+          <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ModuleFieldType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="16" column="18" lean-forward="true" selection-start-line="16" selection-end-line="17" />
+        <state relative-caret-position="320">
+          <caret line="21" column="67" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Teachers/listteachers.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/DepartementFieldType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="50" column="12" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Teachers/affectedModules.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Modules/listmodules.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Teachers/list.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="15" column="91" lean-forward="true" selection-start-line="15" selection-start-column="91" selection-end-line="15" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Student/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-551" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/profilebase.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="75" column="32" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/files/cahiers/5b80403e8091d819192686.png" />
-    <entry file="file://$PROJECT_DIR$/web/files/cahiers/5b8040205454d541481562.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Enseignement.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="86" column="6" selection-start-line="86" selection-start-column="6" selection-end-line="86" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/SecteurActivite.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="28" column="18" lean-forward="true" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/NiveauFieldType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="8" column="54" lean-forward="true" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
+        <state relative-caret-position="340">
+          <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/SecteurActiviteFieldType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-          <folding>
-            <element signature="e#34#83#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="340">
+          <caret line="20" column="59" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/SecteurActiviteRepository.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/SemestreFieldType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        <state relative-caret-position="288">
+          <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/TeacherRepository.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/NiveauFieldType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        <state relative-caret-position="340">
+          <caret line="21" column="55" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Societes/listsocietes.html.twig">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Departments/list.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+        <state relative-caret-position="125">
+          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/EditStudentType.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Filieres/list.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="48" column="15" selection-start-line="20" selection-start-column="8" selection-end-line="48" selection-end-column="15" />
+        <state relative-caret-position="208">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Module.php">
+    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="40" column="6" lean-forward="true" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
+        <state relative-caret-position="308">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Students/list.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="48" column="58" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Societes/list.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="41" column="56" selection-start-line="41" selection-start-column="56" selection-end-line="41" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/EncadrantExterne.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Stage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="e#36#68#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/SocieteType.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Student.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+        <state relative-caret-position="136">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/StagePFAType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="55" column="14" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://d678e010-8501-47b0-87f4-ea65cfbf6514/schema/ensak-project/table/stage_p_f_e">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/StagePFA.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ModuleType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="43" column="7" selection-start-line="43" selection-start-column="7" selection-end-line="45" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/FiliereType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-358" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="78" column="19" lean-forward="true" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/profilebase.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="133" column="17" selection-start-line="133" selection-start-column="17" selection-end-line="133" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/StagePFEType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="121" column="12" lean-forward="true" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/translations/validators.fr.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="42" lean-forward="true" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/translations/messages.fr.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-527" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/EditStudentType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-268" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/StudentType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="53" column="15" lean-forward="true" selection-start-line="53" selection-start-column="15" selection-end-line="53" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/TeacherRegisterType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="37" column="38" lean-forward="true" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/TeacherType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/EditTeacherType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/EncadrantType.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/EnseignementsFieldType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/LoginType.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/MembreJury.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="174" column="30" lean-forward="true" selection-start-line="174" selection-start-column="30" selection-end-line="174" selection-end-column="30" />
           <folding>
-            <element signature="e#34#63#0#PHP" expanded="true" />
+            <element signature="e#36#68#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/EditSocieteType.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Soutenance.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="18" column="19" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
-          <folding>
-            <element signature="e#34#83#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Societes/editform.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/EncadrantExterne.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Societe.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="150" column="5" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
+        <state relative-caret-position="385">
+          <caret line="104" column="47" selection-start-line="104" selection-start-column="47" selection-end-line="104" selection-end-column="47" />
           <folding>
             <element signature="e#36#84#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/UserRepository.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Stages/addStage.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/SocieteRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/StudentType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/EncadrantType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-          <folding>
-            <element signature="e#34#72#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="178" column="55" selection-start-line="178" selection-start-column="55" selection-end-line="178" selection-end-column="55" />
-          <folding>
-            <element signature="e#40#73#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Filieres/list.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+        <state relative-caret-position="160">
+          <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
           <folding>
             <element signature="e#12#33#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Modules/list.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/StudentRegisterType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="52" column="75" selection-start-line="52" selection-start-column="75" selection-end-line="52" selection-end-column="75" />
+        <state relative-caret-position="228">
+          <caret line="45" column="15" lean-forward="true" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Students/list.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/MembreJuryType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="15" column="102" selection-end-line="77" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Societes/list.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="37" column="96" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Societes/addSociete.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="42" selection-end-line="45" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Societes/addEncadrant.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="50" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/StageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="144" column="119" selection-start-line="144" selection-start-column="119" selection-end-line="144" selection-end-column="119" />
+        <state relative-caret-position="327">
+          <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
           <folding>
-            <element signature="e#40#78#0#PHP" expanded="true" />
-            <element signature="e#2840#2859#1#PHP" expanded="true" />
-            <element signature="e#2968#3003#0#PHP" expanded="true" />
-            <element signature="e#3661#3680#1#PHP" expanded="true" />
-            <element signature="e#4857#4896#1#PHP" expanded="true" />
-            <element signature="e#5781#5809#1#PHP" expanded="true" />
-            <element signature="e#5864#5905#1#PHP" expanded="true" />
-            <element signature="e#6704#6744#0#PHP" expanded="true" />
+            <element signature="e#34#66#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/AppFixtures.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/SoutenanceType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="133" column="1" lean-forward="true" selection-start-line="133" selection-start-column="1" selection-end-line="133" selection-end-column="1" />
+        <state relative-caret-position="360">
+          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+          <folding>
+            <element signature="e#34#66#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Stage.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/FiliereFieldType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        <state relative-caret-position="308">
+          <caret line="19" column="70" selection-start-line="19" selection-start-column="70" selection-end-line="19" selection-end-column="70" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Student.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Modules/list.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Teacher.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/StagePFA.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/StagePFE.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Societes/listEncadrants.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="31" column="77" selection-start-line="31" selection-start-column="77" selection-end-line="31" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Societes/editEncadrant.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="55" column="14" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="14" />
+        <state relative-caret-position="166">
+          <caret line="52" column="64" selection-start-line="52" selection-start-column="64" selection-end-line="52" selection-end-column="64" />
+          <folding>
+            <element signature="e#12#33#0#Twig" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+        <state relative-caret-position="531">
+          <caret line="78" column="26" lean-forward="true" selection-start-line="75" selection-start-column="20" selection-end-line="78" selection-end-column="26" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/profile.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="215" column="19" lean-forward="true" selection-start-line="215" selection-start-column="19" selection-end-line="215" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/StagePFE.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-499">
+          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+          <folding>
+            <element signature="e#36#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Stages/list.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="113" column="46" lean-forward="true" selection-start-line="113" selection-start-column="46" selection-end-line="113" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Stages/editStage.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-265">
+          <caret line="87" column="26" lean-forward="true" selection-start-line="87" selection-start-column="26" selection-end-line="87" selection-end-column="26" />
+          <folding>
+            <element signature="e#12#33#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Stages/editSoutenance.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+          <folding>
+            <element signature="e#12#33#0#Twig" expanded="true" />
+            <element signature="e#83#121#0#Twig" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="e#285#292#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/StageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="66" column="25" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
+          <folding>
+            <element signature="e#40#78#0#PHP" expanded="true" />
+            <element signature="e#2734#2773#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Teachers/list.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
+          <folding>
+            <element signature="e#12#33#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Stages/soutenanceField.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/Admin/Stages/addSoutenance.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="104" column="13" lean-forward="true" selection-start-line="104" selection-start-column="13" selection-end-line="104" selection-end-column="13" />
+          <folding>
+            <element signature="e#12#33#0#Twig" expanded="true" />
+            <element signature="e#83#121#0#Twig" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="e#285#292#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

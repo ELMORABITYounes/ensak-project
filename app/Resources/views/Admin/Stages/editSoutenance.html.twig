@@ -1,0 +1,108 @@
+{% extends 'Admin/index.html.twig' %}
+
+{% block content %}
+    {% form_theme form "Admin/Stages/soutenanceField.html.twig" %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Modifier le soutenance</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="form">
+            {{ form_start(form) }}
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <div class="form-label-group">
+                            {{ form_row(form.dateSoutenance) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_rest(form) }}
+            <div>
+                <a class="btn btn-warning" href="{{ path('stagesList') }}">Annuler</a>
+                <button class="btn btn-primary" type="submit">Modifier</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+    {{ parent() }}
+    <script>
+        var $collectionHolder;
+
+        // setup an "add a tag" link
+
+        var $addTagButton = $('<button type="button" style="margin-left: auto;margin-right: 20px" class="btn btn-primary btn-xs add_tag_link"><i class="fa fa-plus"></i> Ajouter un membre</button>');
+        var $newLinkDiv = $('<div class="row"></div>').append($addTagButton);
+
+        jQuery(document).ready(function() {
+
+            // Get the ul that holds the collection of tags
+            $collectionHolder = $('#soutenance_membres');
+            $collectionHolder.find('.member').each(function() {
+                addTagFormDeleteLink($(this));
+            });
+            // add the "add a tag" anchor and li to the tags ul
+            $collectionHolder.append($newLinkDiv);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find('.member').length);
+
+            $addTagButton.on('click', function(e) {
+                // add a new tag form (see next code block)
+                addTagForm($collectionHolder, $newLinkDiv);
+            });
+        });
+        function addTagForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+
+            // get the new index
+            var index = $collectionHolder.data('index');
+
+            var newForm = prototype;
+            // You need this only if you didn't set 'label' => false in your tags field in TaskType
+            // Replace '__name__label__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            // newForm = newForm.replace(/__name__label__/g, index);
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            newForm = newForm.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a tag" link li
+            var $newFormLi = $('<div></div>').append(newForm);
+            $newLinkLi.before($newFormLi);
+            addTagFormDeleteLink($newFormLi);
+        }
+        function addTagFormDeleteLink($tagFormLi) {
+            var $removeFormButton = $('<button title="Supprimer le membre" class="btn btn-danger btn-xs" style="margin-left: auto;margin-bottom: 20px;margin-top: -30px"><i class="fas fa-trash-alt"></i></button>');
+            $tagFormLi.append($removeFormButton);
+
+            $removeFormButton.on('click', function(e) {
+                // remove the li for the tag form
+                $tagFormLi.remove();
+            });
+        }
+        $("form").submit(function (e) {
+            if($('#soutenance_membres').find(".member").length<3){
+                e.preventDefault();
+                $("form").before('<div class="alert alert-danger alert-dismissible fade show" role="alert">\n' +
+                    '            <strong>Erreur</strong> Il faut indiquer au minimum trois membres\n' +
+                    '            <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n' +
+                    '                <span aria-hidden="true">&times;</span>\n' +
+                    '            </button>\n' +
+                    '        </div>');
+            }
+        })
+    </script>
+{% endblock %}

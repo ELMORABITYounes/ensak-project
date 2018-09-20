@@ -17,7 +17,7 @@ class FiliereFieldType extends AbstractType
                 'class' => 'AppBundle\Entity\Filiere',
                 // uses the User.username property as the visible option string
                 'choice_label' => 'name',
-                'label' => 'Selectionner un Filiere pour le Consulter',
+                'label' => 'Selectionner un Filiere pour le Consulter:',
                 'placeholder'=>"Choisissez un Filière"
             ));
     }

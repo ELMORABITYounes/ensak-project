@@ -3,6 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * StagePFA
@@ -23,13 +26,19 @@ class StagePFA extends Stage
 
 
     /**
-     * Get id
-     *
-     * @return int
+     * @Assert\Callback
      */
-    public function getId()
+    public function validate(ExecutionContextInterface $context, $payload)
     {
-        return $this->id;
+        if($this->dateDebut != null && $this->dateFin != null){
+            $diff=$this->dateFin->diff($this->dateDebut);
+            $months=$diff->m;
+            if($months<1){
+                $context->buildViolation("la durée d'un stage pfe doit etre au minimum un mois ")
+                    ->atPath('dateFin')
+                    ->addViolation();
+            }
+        }
     }
 }
 
