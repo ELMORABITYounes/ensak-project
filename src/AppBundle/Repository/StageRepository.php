@@ -29,4 +29,12 @@ class StageRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function countStages()
+    {
+        return $this->createQueryBuilder('f')
+            ->select('count(f)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

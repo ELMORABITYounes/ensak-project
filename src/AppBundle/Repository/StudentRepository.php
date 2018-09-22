@@ -50,4 +50,12 @@ class StudentRepository extends EntityRepository implements UserLoaderInterface
             return false;
         }
     }
+
+    public function countStudents()
+    {
+        return $this->createQueryBuilder('f')
+            ->select('count(f)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

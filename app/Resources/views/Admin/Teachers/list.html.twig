@@ -10,7 +10,7 @@
     <div class="table-responsive-md">
         <div class="row">
             <div class="col-md-4">{{ form_start(form) }} {{ form_row(form.departemrnt,{"id":"depSelect"}) }} {{ form_end(form) }}</div>
-            <span class="hidden" id="loading"><img src="{{ asset('img/loading-1.gif') }}"
+            <span class="hidden" id="loading"><img src="{{ asset('img/loading.gif') }}"
                                                    style="height: 30px;width: 30px;margin-top: 36px;"></span>
             <div style="margin-top: 20px;margin-right: 20px;margin-left: auto"><a title="Ajouter un professeur"
                                                                                   class="btn btn-primary btn-xs"
@@ -252,24 +252,6 @@
                         alert( "error" );
                     });
                     $("#editTeacher").modal("show");
-                });
-            });
-
-            $(function () {
-                $('#dataTables').on('click',".editEnseignementsModal",function () {
-                    $('#editEnseignementsForm').html('<div class="row" style="margin: auto"><img src="{{ asset("img/loading-blue2.gif") }}" style="{display: block;margin: auto}"></div>');
-                    var id = $(this).data("id");
-                    $.get('{{ path('renderEnseignementForm')}}', { id:id },
-                        function(data) {
-                            $("#editEnseignementsForm").html(data);
-                            $('.multipleSelect').select2({
-                                maximumSelectionLength: 8
-                            });
-                            $("#editEnseignementsForm").find("#id").val(id);
-                        }).fail(function() {
-                        alert( "error" );
-                    });
-                    $("#editEnseignementsModal").modal("show");
                 });
             });
 

@@ -1,0 +1,203 @@
+{% extends 'Admin/index.html.twig' %}
+
+{% block content %}
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Vue générale :</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-primary">
+                <div class="card-body bg-primary text-white">
+                    <div class="row">
+                        <div class="col-3">
+                            <i class="fa fa-random fa-5x"></i>
+                        </div>
+                        <div class="col-9 text-right">
+                            <h1>{{ nbrFilieres }}</h1>
+                            <h4>  Filières</h4>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ path('showFiliere') }}">
+                    <div class="card-footer bg-light">
+                        <span class="float-left">Voir les détails</span>
+                        <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-secondary">
+                <div class="card-body bg-secondary text-white">
+                    <div class="row">
+                        <div class="col-3">
+                            <i class="fa fa-user-graduate fa-5x"></i>
+                        </div>
+                        <div class="col-9 text-right">
+                            <h1>{{ nbrStudents }}</h1>
+                            <h4>  Etudiants</h4>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ path('studentsList') }}">
+                    <div class="card-footer bg-light text-secondary">
+                        <span class="float-left">Voir les détails</span>
+                        <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-success">
+                <div class="card-body bg-success text-white">
+                    <div class="row">
+                        <div class="col-3">
+                            <i class="fa fa-user-tie fa-5x"></i>
+                        </div>
+                        <div class="col-9 text-right">
+                            <h1>{{ nbrTeachers }}</h1>
+                            <h4>  Professeurs</h4>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ path('teachersList') }}">
+                    <div class="card-footer bg-light text-success">
+                        <span class="float-left">Voir les détails</span>
+                        <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-danger">
+                <div class="card-body bg-danger text-white">
+                    <div class="row">
+                        <div class="col-3">
+                            <i class="fa fa-book fa-5x"></i>
+                        </div>
+                        <div class="col-9 text-right">
+                            <h1>{{ nbrModules }}</h1>
+                            <h4>  Modules</h4>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ path('modulesList') }}">
+                    <div class="card-footer bg-light text-danger">
+                        <span class="float-left">Voir les détails</span>
+                        <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-warning">
+                <div class="card-body bg-warning text-white">
+                    <div class="row">
+                        <div class="col-3">
+                            <i class="fa fa-university fa-5x"></i>
+                        </div>
+                        <div class="col-9 text-right">
+                            <h1>{{ nbrSocietes }}</h1>
+                            <h4>  Sociétés</h4>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ path('societesList') }}">
+                    <div class="card-footer bg-light text-warning">
+                        <span class="float-left">Voir les détails</span>
+                        <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-info">
+                <div class="card-body bg-info text-white">
+                    <div class="row">
+                        <div class="col-3">
+                            <i class="fa fa-suitcase fa-5x"></i>
+                        </div>
+                        <div class="col-9 text-right">
+                            <h1>{{ nbrStages }}</h1>
+                            <h4>  Stages</h4>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ path('stagesList') }}">
+                    <div class="card-footer bg-light text-info">
+                        <span class="float-left">Voir les détails</span>
+                        <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 40px">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    Constitution des stages
+                </div>
+                <!-- /.panel-heading -->
+                <div class="card-body">
+                    <div class="flot-chart">
+                        <div class="flot-chart-content" style="height: 50vh;margin: auto" id="flot-pie-chart"></div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('vendor/flot/jquery.flot.js') }}"></script>
+    <script src="{{ asset('vendor/flot/jquery.flot.pie.js') }}"></script>
+    <script src="{{ asset('vendor/flot/jquery.flot.resize.js') }}"></script>
+    <script src="{{ asset('vendor/flot-tooltip/jquery.flot.tooltip.min.js') }}"></script>
+    <script>
+        //Flot Pie Chart
+        $(function() {
+            var data = [{
+                label: "Stages PFA",
+                data: {{ nbrStagesPFA }}
+            }, {
+                label: "Stages PFE",
+                data: {{ nbrStagesPFE }}
+            }];
+
+            var plotObj = $.plot($("#flot-pie-chart"), data, {
+                series: {
+                    pie: {
+                        show: true
+                    }
+                },
+                grid: {
+                    hoverable: true
+                },
+                tooltip: true,
+                tooltipOpts: {
+                    content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+                    shifts: {
+                        x: 20,
+                        y: 0
+                    },
+                    defaultTheme: true
+                }
+            });
+
+        });
+    </script>
+
+{% endblock %}

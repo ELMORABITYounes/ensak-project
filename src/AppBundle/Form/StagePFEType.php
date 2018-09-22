@@ -35,7 +35,7 @@ class StagePFEType extends AbstractType
                                     },
                 'label' => 'Etudiant',
                 "attr"=>array("class"=>"multipleSelect"),
-                "placeholder"=>"Prière de choisir un étudiant"
+                "placeholder"=>"--Prière de choisir un étudiant--"
             ))
             ->add('professeurEncadrant', EntityType::class, array(
                     // looks for choices from this entity
@@ -48,7 +48,7 @@ class StagePFEType extends AbstractType
                     },
                     'label' => 'Professeur Encadrant',
                     "attr"=>array("class"=>"multipleSelect"),
-                    "placeholder"=>"Prière de choisir un professeur"
+                    "placeholder"=>"--Prière de choisir un professeur--"
                 )
             )
             ->add('dateDebut', DateType::class, array(
@@ -77,7 +77,7 @@ class StagePFEType extends AbstractType
                     return $societe->getVille();
                 },
                 'label' => 'Société',
-                "placeholder"=>"Prière de choisir une societe",
+                "placeholder"=>"--Prière de choisir une societe--",
                 "attr"=>array("class"=>"multipleSelect")));
 
         $formModifier = function (FormInterface $form, Societe $societe = null) {
@@ -91,7 +91,7 @@ class StagePFEType extends AbstractType
                         return $encadrantExterne->getFirstName()." ".$encadrantExterne->getSecondName();
                     },
                     'label' => 'Encadrant/Superviseur',"attr"=>array("class"=>"multipleSelect")
-                    ,"placeholder"=>"Prière de choisir un encadrant"
+                    ,"placeholder"=>"--Prière de choisir un encadrant--"
                 )
             );
         };

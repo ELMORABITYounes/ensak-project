@@ -22,4 +22,12 @@ class ModuleRepository extends \Doctrine\ORM\EntityRepository
             return false;
         }
     }
+    public function countModules()
+    {
+            return $this->createQueryBuilder('m')
+                ->select('count(m)')
+                ->getQuery()
+                ->getSingleScalarResult();
+    }
+
 }

@@ -42,7 +42,25 @@ class AdminController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('Admin/index.html.twig');
+        $em=$this->getDoctrine()->getManager();
+        $nbrFilieres=$em->getRepository("AppBundle:Filiere")->countFilieres();
+        $nbrStudents=$em->getRepository("AppBundle:Student")->countStudents();
+        $nbrTeachers=$em->getRepository("AppBundle:Teacher")->countTeachers();
+        $nbrSocietes=$em->getRepository("AppBundle:Societe")->countSocietes();
+        $nbrModules=$em->getRepository("AppBundle:Module")->countModules();
+        $nbrStages=$em->getRepository("AppBundle:Stage")->countStages();
+        $nbrStagesPFE=$em->getRepository("AppBundle:StagePFE")->countStagesPFE();
+        $nbrStagesPFA=$em->getRepository("AppBundle:StagePFA")->countStagesPFA();
+        return $this->render('Admin/home.html.twig',[
+            "nbrFilieres"=>$nbrFilieres,
+            "nbrStudents"=>$nbrStudents,
+            "nbrTeachers"=>$nbrTeachers,
+            "nbrSocietes"=>$nbrSocietes,
+            "nbrModules"=>$nbrModules,
+            "nbrStages"=>$nbrStages,
+            "nbrStagesPFE"=>$nbrStagesPFE,
+            "nbrStagesPFA"=>$nbrStagesPFA
+        ]);
     }
 
     /**

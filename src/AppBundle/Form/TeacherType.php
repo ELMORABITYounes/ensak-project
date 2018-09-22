@@ -27,7 +27,8 @@ class TeacherType extends AbstractType
 
                 // uses the User.username property as the visible option string
                 'choice_label' => 'name',
-                'label' => 'département'
+                'label' => 'département',
+                "placeholder"=>"--chooisissez un départemant--"
 
                 // used to render a select box, check boxes or radios
                 // 'multiple' => true,

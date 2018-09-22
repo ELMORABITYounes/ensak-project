@@ -24,7 +24,7 @@ class EditSocieteType extends AbstractType
                 // uses the User.username property as the visible option string
                 'choice_label' => 'name',
                 'label' => "Secteurs d'activités",
-                'placeholder'=>"Prière de séléctionner les sécteurs d'activités",
+                'placeholder'=>"--Prière de séléctionner les sécteurs d'activités--",
                 "attr"=>array("class"=>"multipleSelect"),
                 "multiple"=>true
             ));

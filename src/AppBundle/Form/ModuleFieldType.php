@@ -19,7 +19,7 @@ class ModuleFieldType extends AbstractType
                 'class' => 'AppBundle\Entity\Module',
                 'choice_label' => 'libelle',
                 'label' => 'Modules Enseignés',
-                'placeholder'=>"selectionez les modules à enseigner",
+                'placeholder'=>"--selectionez les modules à enseigner--",
                 'group_by' => function (Module $module) {
                     return $module->getDepartement()->getName();
                 },

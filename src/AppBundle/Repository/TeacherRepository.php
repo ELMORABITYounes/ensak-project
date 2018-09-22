@@ -50,4 +50,12 @@ class TeacherRepository extends EntityRepository implements UserLoaderInterface
             return false;
         }
     }
+
+    public function countTeachers()
+    {
+        return $this->createQueryBuilder('f')
+            ->select('count(f)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

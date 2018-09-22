@@ -24,7 +24,7 @@ class SocieteType extends AbstractType
                 // uses the User.username property as the visible option string
                 'choice_label' => 'name',
                 'label' => "Secteurs d'activités",
-                'placeholder'=>"Choisissez des secteur d'activités",
+                'placeholder'=>"--Selectionnez les secteur d'activités--",
                 "attr"=>array("class"=>"multipleSelect"),
                 "multiple"=>true
             ));

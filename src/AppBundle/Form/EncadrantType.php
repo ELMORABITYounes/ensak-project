@@ -20,7 +20,7 @@ class EncadrantType extends AbstractType
                 'class' => 'AppBundle\Entity\Societe',
                 'choice_label' => 'name',
                 'label' => "Nom de Société",
-                'placeholder'=>"Choisissez une société",
+                'placeholder'=>"--Choisissez une société--",
                 "data"=>$options["societe"]
             ))
             ->add('firstName',TextType::class,array('label' => 'Prénom'))

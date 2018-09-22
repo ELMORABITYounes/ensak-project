@@ -19,7 +19,7 @@ class DepartementFieldType extends AbstractType
                 // uses the User.username property as the visible option string
                 'choice_label' => 'name',
                 'label' => 'Lister par département:',
-                'placeholder'=>"Prière de Choisir un département"
+                'placeholder'=>"--Prière de Choisir un département--"
             ));
     }
 

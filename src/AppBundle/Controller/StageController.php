@@ -79,7 +79,7 @@ class StageController extends Controller
         if ($stage instanceof StagePFE){
             $form=$this->createForm(StagePFEType::class,$stage);
         }else{
-            $form=$this->createForm(StagePFEType::class,$stage);
+            $form=$this->createForm(StagePFAType::class,$stage);
         }
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){

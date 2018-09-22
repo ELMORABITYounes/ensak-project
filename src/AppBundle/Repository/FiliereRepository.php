@@ -10,4 +10,11 @@ namespace AppBundle\Repository;
  */
 class FiliereRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function countFilieres()
+    {
+        return $this->createQueryBuilder('m')
+            ->select('COUNT(m)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

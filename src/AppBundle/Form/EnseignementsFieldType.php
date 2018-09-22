@@ -15,7 +15,7 @@ class EnseignementsFieldType extends AbstractType
         'class' => 'AppBundle\Entity\Module',
         'choice_label' => 'libelle',
         'label' => 'Modules à affecter',
-        'placeholder'=>"selectionez les modules à affecter",
+        'placeholder'=>"--selectionez les modules à affecter--",
         'multiple' => true          ,
             'choices'=>$options["modules"],
             "attr"=>array("class"=>"multipleSelect"),

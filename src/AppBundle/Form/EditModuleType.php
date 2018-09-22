@@ -23,7 +23,7 @@ class EditModuleType extends AbstractType
                 // uses the User.username property as the visible option string
                 'choice_label' => 'name',
                 'label' => 'département',
-                "placeholder" => "prière de choisir un département"
+                "placeholder" => "--prière de choisir un département--"
 
                 // used to render a select box, check boxes or radios
                 // 'multiple' => true,

@@ -26,10 +26,10 @@
 
 <!--navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <button class="btn btn-md btn-outline-warning hidden" id="toggle-menu" type="button">
+    <button class="btn btn-md btn-outline-warning" style="margin-right: 10px" id="toggle-menu" type="button">
         <i class="fas fa-bars"></i>
     </button>
-    <a class="navbar-brand mr-auto" href="#"> Ensa Khouriga</a>
+    <a class="navbar-brand mr-auto" href="#">Ensa Khouriga</a>
         <div>
             <ul class="navbar-nav text-uppercase">
                 <li class="nav-item">
@@ -123,23 +123,6 @@
                 });
             }
         });
-
-        if (window.matchMedia('(max-width: 1008px)').matches)
-        {
-            var $lefty = $(".sidebar");
-            $("#toggle-menu").toggleClass("hide");
-            $lefty.animate({left: parseInt($lefty.css('left'), 10) == 0 ? -$lefty.outerWidth()-20 : 0},0);
-            $( ".theContent" ).animate({
-                marginLeft: "16px",
-            },0);
-            $( ".footer" ).animate({
-                marginLeft: "16px",
-            },0, function() {
-                $($.fn.dataTable.tables(true)).DataTable()
-                    .columns.adjust()
-                    .responsive.recalc();
-            });
-        }
     });
 </script>
 {% block javascripts %}

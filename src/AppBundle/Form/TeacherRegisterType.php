@@ -33,7 +33,7 @@ class TeacherRegisterType extends AbstractType
                 // uses the User.username property as the visible option string
                 'choice_label' => 'name',
                 'label' => 'département',
-                'placeholder' => 'choisissez votre département'
+                'placeholder' => '--choisissez votre département--'
                 // used to render a select box, check boxes or radios
                 // 'multiple' => true,
                 // 'expanded' => true,

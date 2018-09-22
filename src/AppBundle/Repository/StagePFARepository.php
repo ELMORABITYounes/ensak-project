@@ -10,4 +10,11 @@ namespace AppBundle\Repository;
  */
 class StagePFARepository extends \Doctrine\ORM\EntityRepository
 {
+    public function countStagesPFA()
+    {
+        return $this->createQueryBuilder('f')
+            ->select('count(f)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

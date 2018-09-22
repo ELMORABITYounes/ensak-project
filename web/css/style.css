@@ -8,50 +8,54 @@ body {
   flex-direction: column;
 }
 body {
-  background: url("../images/MostLikelyforBlog.jpg") no-repeat center center fixed;
+  background: url("../img/background_2.jpg") no-repeat center center fixed;
   background-size: cover;
   overflow-x:hidden;
 }
 
+.card-header{
+    font-size: x-large;
+}
+
+.navbar{
+    padding: 0;
+    box-shadow: 0 0 3px 0px black;
+}
+
 #mainNav {
-  background-color: darkslategrey;
+  background-color: #fff;
 }
 
 #mainNav .navbar-toggler {
-  font-size: 12px;
   right: 0;
   padding: 13px;
   text-transform: uppercase;
-  color: white;
+  color: #fff;
   border: 0;
-  background-color: #fed136;
+  background-color: #094d8f;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #mainNav .navbar-brand {
-  color: #ffcc00;
+  color: #094d8f;
   font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;
 }
 
 
 #mainNav .navbar-nav .nav-item .nav-link {
   font-size: 90%;
-  font-weight: 400;
   padding: 0.75em 0;
   letter-spacing: 1px;
-  color: white;
+  color: #007bff;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 @media (min-width: 992px) {
   #mainNav {
-    padding-top: 25px;
-    padding-bottom: 25px;
     -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
     -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
     transition: padding-top 0.3s, padding-bottom 0.3s;
     border: none;
-    background-color: transparent;
   }
   #mainNav .navbar-brand {
     font-size: 1.75em;
@@ -61,15 +65,6 @@ body {
   }
   #mainNav .navbar-nav .nav-item .nav-link {
     padding: 1.1em 1em;
-  }
-  #mainNav.navbar-shrink {
-    padding-top: 0;
-    padding-bottom: 0;
-    background-color: darkslategrey;
-  }
-  #mainNav.navbar-shrink .navbar-brand {
-    font-size: 1.25em;
-    padding: 12px 0;
   }
 }
 
@@ -89,7 +84,12 @@ body {
     box-shadow: 2px 4px 16px -4px rgba(0,0,0,0.75) !important;
 }
 
-.btn-primary:active,
+.btn-outline-primary:hover {
+    color: white !important;
+    box-shadow: 2px 4px 16px -4px rgba(0,0,0,0.75) !important;
+}
+
+.btn-oprimary:active,
 .btn-primary:visited,
 .btn-primary:focus {
   box-shadow:none;
@@ -118,7 +118,7 @@ body {
 
 footer {
   text-align: center;
-  background-color: white;
+    background-color: #fff;
 }
 
 footer span.copyright {
@@ -149,7 +149,7 @@ ul.social-buttons li a {
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
-  color: white;
+  color: #fff;
   border-radius: 100%;
   outline: none;
   background-color: #212529;
@@ -176,7 +176,7 @@ div.alert-message {
 div.alert-message .box-icon {
     display: block;
     float: left;
-    background-image: url('../images/icon.png');
+    background-image: url('../img/icon.png');
     width: 30px;
     height: 25px;
     margin-top: -2px;

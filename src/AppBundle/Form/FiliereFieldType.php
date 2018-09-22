@@ -18,7 +18,7 @@ class FiliereFieldType extends AbstractType
                 // uses the User.username property as the visible option string
                 'choice_label' => 'name',
                 'label' => 'Selectionner un Filiere pour le Consulter:',
-                'placeholder'=>"Choisissez un Filière"
+                'placeholder'=>"--Choisissez un Filière--"
             ));
     }
 

@@ -31,4 +31,12 @@ class SocieteRepository extends \Doctrine\ORM\EntityRepository
             return false;
         }
     }
+    public function countSocietes()
+    {
+        return $this->createQueryBuilder('f')
+            ->select('count(f)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 }

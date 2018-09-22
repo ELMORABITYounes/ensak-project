@@ -29,7 +29,7 @@ class StudentType extends AbstractType
                 // uses the User.username property as the visible option string
                 'choice_label' => 'libelle',
                 'label' => 'NIVEAU D\'ÉTUDES',
-                'placeholder'=>"Choisir un niveau",
+                'placeholder'=>"--Choisissez un niveau--",
                 'group_by' => function (Niveau $niveau) {
                     return $niveau->getFiliere();
                 }

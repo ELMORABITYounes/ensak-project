@@ -20,7 +20,7 @@ class NiveauFieldType extends AbstractType
                 // uses the User.username property as the visible option string
                 'choice_label' => 'libelle',
                 'label' => "Lister par niveau d'études:",
-                'placeholder'=>"Choisissez un niveau",
+                'placeholder'=>"--Choisissez un niveau--",
                 'group_by' => function (Niveau $niveau) {
                     return $niveau->getFiliere();
                 },

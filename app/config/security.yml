@@ -48,6 +48,7 @@ security:
                 default_target_path: /
                 always_use_default_target_path: true
                 failure_path: /login
+            logout_on_user_change: true
 
             # activate different ways to authenticate
 

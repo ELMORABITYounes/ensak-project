@@ -19,7 +19,7 @@ class SemestreFieldType extends AbstractType
                 'class' => 'AppBundle\Entity\Semestre',
                 'choice_label' => 'libelle',
                 'label' => 'Semestre d\'enseignement',
-                'placeholder'=>"selectionez un semestre",
+                'placeholder'=>"--selectionez un semestre--",
                 'group_by' => function (Semestre $semestre) {
                     return $semestre->getNiveau()->getFiliere()->getName();
                 }));
