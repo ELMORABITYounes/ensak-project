@@ -232,8 +232,19 @@
                                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
                             },
                             "pageLength": 50,
-                            "lengthChange": false,
-                            "scrollX": true,
+                            responsive: {
+                                details: {
+                                    display: $.fn.dataTable.Responsive.display.modal( {
+                                        header: function ( row ) {
+                                            var data = row.data();
+                                            return "Détails de "+data[1]+" "+data[2];
+                                        }
+                                    } ),
+                                    renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                                        tableClass: 'table'
+                                    } )
+                                }
+                            }
                         });
                         $("#loading").addClass("hidden");
                     }).fail(function() {

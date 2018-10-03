@@ -11,10 +11,11 @@ body {
     overflow-x:hidden;
 }
 #mainNav {
-    background-color: darkslategrey;
+    background-color: #fff;
+    box-shadow: 0px 0px 3px -1px rgba(0,0,0,0.75);
 }
 #mainNav .navbar-brand {
-    color: #fed136;
+    color: #03498b;
     font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;
 }
 
@@ -40,15 +41,15 @@ body {
     overflow: auto;
 }
 
-::-webkit-scrollbar {
+.sidebar::-webkit-scrollbar {
     width: 10px;
 }
 
-::-webkit-scrollbar-track {
+.sidebar::-webkit-scrollbar-track {
     border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb {
+.sidebar::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background: rgba(0, 0, 0, 0.6);
 }
@@ -58,7 +59,7 @@ body {
     background: rgba(128, 128, 128, 0.7);
 }
 
-::-webkit-scrollbar-thumb:window-inactive {
+.sidebar::-webkit-scrollbar-thumb:window-inactive {
     background: rgba(32, 32, 32, 0.05);
 }
 
@@ -212,7 +213,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 .profile-usermenu ul li.active a {
     color: #0785ef;
     background-color: #e9ecef;
-    border-left: 2px solid #0785ef;
+    border-left: 3px solid #0785ef;
 }
 
 /* Profile Content */
@@ -307,4 +308,11 @@ div.alert-message a.close:hover, div.alert-box a.close:focus {
         display: block;
         margin-right: 10px;
     }
+}
+
+.badge-notify{
+    background: red;
+    position: relative;
+    top: -10px;
+    left: -25px;
 }
